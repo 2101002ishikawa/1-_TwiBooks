@@ -1,0 +1,19 @@
+.iconImg{
+    width: 15%;
+    margin-top: 40px;
+}
+
+.btn{
+    width: 200px;
+    background-color: aliceblue;
+    border: 1px solid black;
+}
+
+.subText{
+    width: 150px;
+}
+
+.logincard{
+    border: 3px solid #000000;
+    border-radius: 15px;
+}
