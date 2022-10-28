@@ -24,11 +24,23 @@
         require_once "DBManager.php";
         $db = new DBManager;
         $errorMessage = "";
+        $successMessage="登録完了しました。";
         $mem_name;
         $mem_familyname;
         $mem_firstname;
         $mem_mail;
         $mem_pass;
+        $color;
+        if($_POST['check']==1){
+            $color = "#00ff00";
+        }else{
+            $color = "#ff0000";
+        }
+
+        if(!$errorMessage=""){
+            $successMessage="";
+        }
+
         if (!empty($_POST)) {
             $mem_name = $_POST['nickName'];
             $mem_familyname= $_POST['familyName'];
@@ -93,7 +105,10 @@
 
             //データベース処理の開始を判断
             if(empty($errorMessage)){
-                $db->INSERTMember($mem_name,$mem_familyname,$mem_firstname,$mem_mail,$mem_pass);
+                $answer=$db->INSERTMember($mem_name,$mem_familyname,$mem_firstname,$mem_mail,$mem_pass);
+                if($answer==1){
+                    $_POST['check']=1;
+                }
             }
         }
     ?>
@@ -108,10 +123,11 @@
             ニックネーム:　　　　　　　　<br><input type="text" name="nickName" class="m-3" placeholder="シンイチ"><br>
             苗字:　　　　　　　　　　　<br><input type="text" name="familyName" class="m-3" placeholder="上村"><br>
             名前:　　　　　　　　　　　<br><input type="text" name="firstName" class="m-3" placeholder="晋一"><br>
-            mail:　　　　　　　　　　　<br><input type="text" name="usermail" class="m-3" placeholder="ueue@gmail.com"><br>
+            mail:　　　　　　　　　　　<br><input type="text" name="usermail" class="m-3" placeholder="example@gmail.com"><br>
             pass:　　　　　　　　　　　<br><input type="pass" name="pass" class="m-3"><br>
+            <input type="hidden" name="check" value="">
             <div>
-                <?php echo "<font color= id=error>".$errorMessage."<br></font>"; ?>
+                <?php echo "<font color=".$color." id=error>".$errorMessage.$successMessage."<br></font>"; ?>
             </div>
             <input type="submit" value="登録" class="mb-3 btn" id="newMemberButton">
         </form>
