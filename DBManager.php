@@ -17,6 +17,14 @@ class DBManager{
         return 1;
     }
 
+    function mailAlready($mail){
+        $pdo = $this->dbConnect();
+        $isMail = $pdo->prepare("SELECT COUNT(*) FROM members WHERE mem_mail = ?");
+        $isMail->bindValue(1,$mail,PDO::PARAM_STR);
+        $isMail->execute();
+        return $isMail;
+    }
+
     function loginCheck($mail){
         $pdo = $this->dbConnect();
         $sql = "SELECT * FROM user_tbl2 WHERE usermail=?";

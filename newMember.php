@@ -24,22 +24,11 @@
         require_once "DBManager.php";
         $db = new DBManager;
         $errorMessage = "";
-        $successMessage="登録完了しました。";
         $mem_name;
         $mem_familyname;
         $mem_firstname;
         $mem_mail;
         $mem_pass;
-        $color;
-        if($_POST['check']==1){
-            $color = "#00ff00";
-        }else{
-            $color = "#ff0000";
-        }
-
-        if(!$errorMessage=""){
-            $successMessage="";
-        }
 
         if (!empty($_POST)) {
             $mem_name = $_POST['nickName'];
@@ -105,9 +94,13 @@
 
             //データベース処理の開始を判断
             if(empty($errorMessage)){
-                $answer=$db->INSERTMember($mem_name,$mem_familyname,$mem_firstname,$mem_mail,$mem_pass);
-                if($answer==1){
-                    $_POST['check']=1;
+                 if($db->mailAlready($mem_mail)==0){
+                    $answer=$db->INSERTMember($mem_name,$mem_familyname,$mem_firstname,$mem_mail,$mem_pass);
+                    if($answer==1){
+                        $_POST['check']=1;
+                    }   
+                }else{
+                    $errorMessage = "<br>このメールアドレスは既に使用されています。";
                 }
             }
         }
@@ -127,10 +120,18 @@
             pass:　　　　　　　　　　　<br><input type="pass" name="pass" class="m-3"><br>
             <input type="hidden" name="check" value="">
             <div>
-                <?php echo "<font color=".$color." id=error>".$errorMessage.$successMessage."<br></font>"; ?>
+                <?php echo "<font color=#ff0000 id=error>".$errorMessage."<br></font>"; ?>
             </div>
             <input type="submit" value="登録" class="mb-3 btn" id="newMemberButton">
         </form>
+        <div class="row">
+                <p class="offset-2 col-3">
+                    <a href="passForget.php">パスワードを忘れた方はこちら</a>
+                </p>
+                <p class="offset-2 col-3">
+                    <a href="newMember.php">新規会員登録</a>
+                </p>
+            </div>
     </div>
     <script language="javascript" type="text/javascript">
 
