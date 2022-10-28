@@ -108,18 +108,29 @@ if (!empty($_POST)) {
 <body>
     <button onclick="location.href='./INSERT.php'">登録</button>
     <button onclick="location.href='./login.php'">ログイン</button><br>
-
-    <div class="card offset-3 col-6 text-center logincard" style="padding-bottom:10%; ">
-        <h1 class="mt-5">ログイン</h1>
-        <form action="" method="post" name="form1">
-            mail:<input type="text" name="usermail" class="m-3"><br>
-            pass:<input type="pass" name="pass" class="m-3"><br>
-            <div>
-                <font color="#ff0000" id="error"><?php echo htmlspecialchars($errorMessage, ENT_QUOTES)."<br>"; ?></font>
-            </div>
-            <input type="submit" value="ログイン" class="mb-3 btn" id="loginButton">
-        </form>
+    <div class="row">
+        <div class="card offset-3 col-6 text-center logincard" style="padding-bottom:10%; ">
+            <h1 class="mt-5">ログイン</h1>
+            <form action="" method="post" name="form1">
+                mail:<input type="text" name="usermail" class="m-3"><br>
+                pass:<input type="pass" name="pass" class="m-3"><br>
+                <div>
+                    <font color="#ff0000" id="error"><?php echo htmlspecialchars($errorMessage, ENT_QUOTES)."<br>"; ?></font>
+                </div>
+                <input type="submit" value="ログイン" class="mb-3 btn" id="loginButton">
+            </form>
+        </div>
     </div>
+
+    <div class="row">
+        <p class="offset-2 col-3">
+            <a href="passForget.php">パスワードを忘れた方はこちら</a>
+        </p>
+        <p class="offset-2 col-3">
+            <a href="newMember.php">新規会員登録</a>
+        </p>
+    </div>
+    
     <script language="javascript" type="text/javascript">
 
     </script>
