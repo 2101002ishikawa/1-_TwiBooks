@@ -1,6 +1,5 @@
 CREATE TABLE(
     tweets_id           VARCHAR(20)     NOT NULL AUTO_INCREMENT,
-    mem_id              VARCHAR(8)      NOT NULL,
 CREATE TABLE tweets(
     tweets_id           INT(20)     NOT NULL AUTO_INCREMENT,
     mem_id              INT(8)      NOT NULL,
