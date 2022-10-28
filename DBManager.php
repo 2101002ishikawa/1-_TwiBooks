@@ -5,17 +5,18 @@ class DBManager{
         'webuser','abccsd2');
         return $pdo;
     }
-    function InsertUser($pass,$name,$mail,$address){
+    function INSERTMember($nickname,$familyname,$firstname,$mail,$pass){
         $pdo = $this->dbConnect();
-        $sql = "INSERT INTO user_tbl2(pass,username,usermail,address) VALUES(?,?,?,?)";
-        $insert = $pdo->prepare($sql);
-        $insert->bindValue(1,password_hash($pass,PASSWORD_DEFAULT),PDO::PARAM_STR);
-        $insert->bindValue(2,$name,PDO::PARAM_STR);
-        $insert->bindValue(3,$mail,PDO::PARAM_STR);
-        $insert->bindValue(4,$address,PDO::PARAM_STR);
-        $insert->execute();
+        $in = $pdo->prepare("INSERT INTO members(mem_name,mem_familyname,mem_firstname,mem_mail,mem_pass) VALUES(?,?,?,?,?)");
+        $in->bindValue(1,$nickname,PDO::PARAM_STR);
+        $in->bindValue(2,$familyname,PDO::PARAM_STR);
+        $in->bindValue(3,$firstname,PDO::PARAM_STR);
+        $in->bindValue(4,$mail,PDO::PARAM_STR);
+        $in->bindValue(5,password_hash($pass,PASSWORD_DEFAULT),PDO::PARAM_STR);
+        $in->execute();
         return 1;
     }
+
     function loginCheck($mail){
         $pdo = $this->dbConnect();
         $sql = "SELECT * FROM user_tbl2 WHERE usermail=?";

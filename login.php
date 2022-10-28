@@ -29,7 +29,6 @@ function login($usermail,$pass){
     require_once "DBManager.php";
     $DB = new DBManager;
     try{
-        echo "<alert>あ</alert>";
         $userdata = $DB->loginCheck($usermail);
         $counter=0;
         if(isset($userdata)==true){
@@ -97,9 +96,10 @@ if (!empty($_POST)) {
     if (!preg_match("/^[a-zA-Z0-9]+$/", $pass)) {
         $errorMessage = 'メールアドレス又はパスワードが違います';
     }
-    if(empty($errorMessage)){
-        login($usermail,$pass);
-    }
+    
+  }
+  if(empty($errorMessage)){
+    login($usermail,$pass);
   }
 }
 
@@ -119,17 +119,18 @@ if (!empty($_POST)) {
                 </div>
                 <input type="submit" value="ログイン" class="mb-3 btn" id="loginButton">
             </form>
+            <div class="row">
+                <p class="offset-2 col-3">
+                    <a href="passForget.php">パスワードを忘れた方はこちら</a>
+                </p>
+                <p class="offset-2 col-3">
+                    <a href="newMember.php">新規会員登録</a>
+                </p>
+            </div>
         </div>
     </div>
 
-    <div class="row">
-        <p class="offset-2 col-3">
-            <a href="passForget.php">パスワードを忘れた方はこちら</a>
-        </p>
-        <p class="offset-2 col-3">
-            <a href="newMember.php">新規会員登録</a>
-        </p>
-    </div>
+    
     
     <script language="javascript" type="text/javascript">
 
