@@ -1,0 +1,69 @@
+// eメールアドレスバリデーションチェック
+            // 空白チェック
+            if ($mem_mail === '') {
+                $errorMessage = $errorMessage."<br>メールアドレスは入力必須です";
+            }
+            // 文字数チェック
+            if (strlen($mem_mail) > 200) {
+                $errorMessage = $errorMessage."メールアドレスは200文字以内で入力してください";
+            }
+            
+            // パスワードバリデーションチェック
+            // 空白チェック
+            if ($mem_pass === '') {
+                $errorMessage= $errorMessage."<br>パスワードを入力してください";
+            }
+            // 文字数チェック
+             else{
+                if (strlen($mem_pass) > 200) {
+                $errorMessage = $errorMessage."<br>メールアドレス又はパスワードが違います";
+                }
+            // 形式チェック
+                if (!preg_match("/^[a-zA-Z0-9]+$/", $mem_pass)) {
+                    $errorMessage = $errorMessage."<br>メールアドレス又はパスワードが違います";
+                }
+            }
+
+            //ニックネームチェック
+            if ($mem_name === '') {
+                $errorMessage = $errorMessage."<br>ニックネームは入力必須です";
+            }
+            // 文字数チェック
+            if (strlen($mem_name) > 200) {
+                $errorMessage = $errorMessage."<br>ニックネームは200文字以内で入力してください";
+            }
+
+            //苗字チェック
+            // 空白チェック
+            if ($mem_familyname === '') {
+                $errorMessage = $errorMessage."<br>苗字は入力必須です";
+            }
+            // 文字数チェック
+            if (strlen($mem_familyname) > 200) {
+                $errorMessage = $errorMessage."<br>苗字は200文字以内で入力してください";
+            }
+
+            //名前チェック
+            // 空白チェック
+            if ($mem_firstname === '') {
+                $errorMessage = $errorMessage."<br>名前は入力必須です";
+            }
+            // 文字数チェック
+            if (strlen($mem_firstname) > 200) {
+                $errorMessage = $errorMessage."<br>入力は200文字以内で入力してください";
+            }
+
+            //データベース処理の開始を判断
+            if(empty($errorMessage)){
+                 if($db->mailAlready($mem_mail)==0){
+                    $answer=$db->INSERTMember($mem_name,$mem_familyname,$mem_firstname,$mem_mail,$mem_pass);
+                    if($answer==1){
+                        $_POST['check']=1;
+                    }   
+                }else{
+                    $errorMessage = "<br>このメールアドレスは既に使用されています。";
+                }
+            }
+        }
+
+        <input type="submit" value="登録" class="mb-3 btn" id="newMemberButton">
