@@ -29,6 +29,7 @@
         $mem_firstname;
         $mem_mail;
         $mem_pass;
+
         if (!empty($_POST)) {
             $mem_name = $_POST['nickName'];
             $mem_familyname= $_POST['familyName'];
@@ -93,7 +94,14 @@
 
             //データベース処理の開始を判断
             if(empty($errorMessage)){
-                $db->INSERTMember($mem_name,$mem_familyname,$mem_firstname,$mem_mail,$mem_pass);
+                 if($db->mailAlready($mem_mail)==0){
+                    $answer=$db->INSERTMember($mem_name,$mem_familyname,$mem_firstname,$mem_mail,$mem_pass);
+                    if($answer==1){
+                        $_POST['check']=1;
+                    }   
+                }else{
+                    $errorMessage = "<br>このメールアドレスは既に使用されています。";
+                }
             }
         }
     ?>
@@ -108,13 +116,22 @@
             ニックネーム:　　　　　　　　<br><input type="text" name="nickName" class="m-3" placeholder="シンイチ"><br>
             苗字:　　　　　　　　　　　<br><input type="text" name="familyName" class="m-3" placeholder="上村"><br>
             名前:　　　　　　　　　　　<br><input type="text" name="firstName" class="m-3" placeholder="晋一"><br>
-            mail:　　　　　　　　　　　<br><input type="text" name="usermail" class="m-3" placeholder="ueue@gmail.com"><br>
+            mail:　　　　　　　　　　　<br><input type="text" name="usermail" class="m-3" placeholder="example@gmail.com"><br>
             pass:　　　　　　　　　　　<br><input type="pass" name="pass" class="m-3"><br>
+            <input type="hidden" name="check" value="">
             <div>
-                <?php echo "<font color= id=error>".$errorMessage."<br></font>"; ?>
+                <?php echo "<font color=#ff0000 id=error>".$errorMessage."<br></font>"; ?>
             </div>
             <input type="submit" value="登録" class="mb-3 btn" id="newMemberButton">
         </form>
+        <div class="row">
+                <p class="offset-2 col-3">
+                    <a href="passForget.php">パスワードを忘れた方はこちら</a>
+                </p>
+                <p class="offset-2 col-3">
+                    <a href="newMember.php">新規会員登録</a>
+                </p>
+            </div>
     </div>
     <script language="javascript" type="text/javascript">
 
