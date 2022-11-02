@@ -21,6 +21,11 @@
 //セッションを使う
 session_start();
 
+if(isset($SESSION['usermail'])&&isset($SESSION['username'])){
+header('location:loginsuccess.php');
+}
+
+
 // 変数の初期化
 $usermail = '';
 $pass = '';
@@ -106,8 +111,12 @@ if (!empty($_POST)) {
 ?>
 </head>
 <body>
-    <button onclick="location.href='./INSERT.php'">登録</button>
-    <button onclick="location.href='./login.php'">ログイン</button><br>
+    <button onclick="location.href='./newMember.php'">会員登録</button>
+    <button onclick="location.href='./login.php'">ログイン</button>
+    <button onclick="location.href='./insertBook.php'">本の登録</button>
+    <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
+    <br>
+
     <div class="row">
         <div class="card offset-3 col-6 text-center logincard" style="padding-bottom:10%; ">
             <h1 class="mt-5">ログイン</h1>

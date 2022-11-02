@@ -11,56 +11,86 @@
         body{
             background-color: #e9e9e9;
         }
-        .card{
+        .logincard{
             border: 3px solid #000000;
             border-radius: 15px;
         }
         #newMemberButton{
             margin-top: 30px;
         }
+        
     </style>
     <?php
         session_start();
-        
-        require_once "DBManager.php";
-        $db = new DBManager;
-        $mem_name;
-        $mem_familyname;
-        $mem_firstname;
-        $mem_mail;
-        $mem_pass;
-        $error;
-        if(!empty($_POST)){
-            
-            $mem_mail = $_POST['usermail'];
-            $mem_name = $_POST['nickName'];
-            $mem_familyname= $_POST['familyName'];
-            $mem_firstname= $_POST['firstName'];
-            $mem_pass = $_POST['pass'];
-            if($db->mailAlready($mem_mail)){
-                $answer=$db->INSERTMember($mem_name,$mem_familyname,$mem_firstname,$mem_mail,$mem_pass);
-                $alert = "<script type='text/javascript'>alert('登録が完了しました');</script>";
-                echo $alert;
-                $SESSION['usermail'] = $mem_mail;
-                $SESSION['username'] = $mem_name;
-                if(!empty($SESSION['usermail'])&&!empty($SESSION['username'])){
-
-                }
-            }else{
-                echo "<script type='text/javascript'>alert('$mem_mail メールアドレスが既に使用されています。\n他のメールアドレスをご使用ください。');</script>";
-                
+        function check(){
+            try{
+                require_once "DBManager.php";
+                $db = new DBManager;
+                $mem_name;
+                $mem_familyname;
+                $mem_firstname;
+                $mem_mail;
+                $mem_pass;
+                $error;
+                if (!empty($_POST)) {
+                    if(!$_POST['nickName']){
+                        $error['nickname'] = "blank";
+                    }
+                    if(!$_POST['familyName']){
+                        $error['familyname'] = "blank";
+                    }
+                    if(!$_POST['firstName']){
+                        $error['firstname'] = "blank";
+                    }
+                    if(!$_POST['usermail']){
+                        $error['usermail'] = "blank";
+                    }
+                    if(!$_POST['pass']){
+                        $error['pass'] = "blank";
+                    }
+                    if(!isset($error)){
+                        if($db->mailAlready($_POST['usermail'])){
+                            $error['usermail'] = 'duplicate';
+                            echo "<script type='text/javascript'>alert('登録を中断しました');</script>";
+                            exit;
+                        }
+                    }
+                    if (!isset($error)) {
+                        if (preg_match("/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/",$_POST['usermail'])){
+                            $error['usermail'] = 'duplicate';
+                            echo "<script type='text/javascript'>alert('登録を中断しました');</script>";
+                            exit;
+                        }
+                    }
+                    
+                    $mem_name = $_POST['nickName'];
+                    $mem_familyname= $_POST['familyName'];
+                    $mem_firstname= $_POST['firstName'];
+                    $mem_mail = $_POST['usermail'];
+                    $mem_pass = $_POST['pass'];
+                    $alert = "<script type='text/javascript'>alert('登録が完了しました');</script>";
+                        echo $alert;
+                    if($db->mailAlready($mem_mail)){
+                        $answer=$db->INSERTMember($mem_name,$mem_familyname,$mem_firstname,$mem_mail,$mem_pass);
+                        $alert = "<script type='text/javascript'>alert('登録が完了しました');</script>";
+                        echo $alert;
+                        return false;
+                    }else{
+                        throw new Exception("a");
+                    }
+                }    
+            }catch(SQLException $e){
+                $error['mail'] = 'duplicate';
+                return false;
+            }catch(Exception $e){
+                return false;
             }
-            
         }
     ?>
-        
 </head>
 <body>
-    <button onclick="location.href='./newMember.php'">会員登録</button>
-    <button onclick="location.href='./login.php'">ログイン</button>
-    <button onclick="location.href='./insertBook.php'">本の登録</button>
-    <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
-    <br>
+    <button onclick="location.href='./INSERT.php'">登録</button>
+    <button onclick="location.href='./login.php'">ログイン</button><br>
 
     <div class="card offset-3 col-6 text-center logincard" style="padding-bottom:10%; ">
         <h1 class="mt-5 mb-5">新規会員登録</h1>
@@ -87,16 +117,16 @@
                 <p class="error">＊このメールアドレスはすでに登録済みです</p>
             <?php endif ?>
             
-            pass:　　　　　　　　　　　<br><input type="password" name="pass" class="m-3"><br>
+            pass:　　　　　　　　　　　<br><input type="pass" name="pass" class="m-3"><br>
             <?php if (!empty($error["pass"]) && $error['pass'] === 'blank'): ?>
                 <p class="error">＊パスワードを入力してください</p>
             <?php endif ?>
             
-            <input type="submit" value="登録" class="btn" id="submitBtn">
+            <input type="submit" value="登録" onsubmit="return check()" class="btn">
         </form>
         <div class="row">
                 <p class="offset-2 col-3">
-                    <a href="login.php">ログイン画面へ戻る</a>
+                    <a href="passForget.php">ログイン画面へ戻る</a>
                 </p>
         </div>
     </div>

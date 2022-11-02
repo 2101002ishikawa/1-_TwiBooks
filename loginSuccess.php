@@ -6,10 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ログイン成功</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        body{
+            background-color: #e9e9e9;
+        }
+    </style>
 </head>
 <body>
-    <button onclick="location.href='./INSERT.php'">登録</button>
-    <button onclick="location.href='./login.php'">ログイン</button><br>
+<button onclick="location.href='./newMember.php'">会員登録</button>
+    <button onclick="location.href='./login.php'">ログイン</button>
+    <button onclick="location.href='./insertBook.php'">本の登録</button>
+    <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
+    <br>
+    
     <?php
         session_start();
         if(isset($_SESSION['usermail'])==false

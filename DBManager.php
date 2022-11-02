@@ -14,20 +14,30 @@ class DBManager{
         $in->bindValue(4,$mail,PDO::PARAM_STR);
         $in->bindValue(5,password_hash($pass,PASSWORD_DEFAULT),PDO::PARAM_STR);
         $in->execute();
-        return 1;
     }
 
     function mailAlready($mail){
         $pdo = $this->dbConnect();
-        $isMail = $pdo->prepare("SELECT COUNT(*) FROM members WHERE mem_mail = ?");
+        $isMail = $pdo->prepare("SELECT * FROM members WHERE mem_mail = ?");
         $isMail->bindValue(1,$mail,PDO::PARAM_STR);
         $isMail->execute();
-        return $isMail;
+        $mails = $isMail->fetchAll();
+        $count=0;
+        foreach ($mails as $key){
+            if($mail===$key['mem_mail']){
+                $count++;
+            }
+        }
+        if($count==0){
+            return true;
+        }else{
+            return false;
+        }
     }
 
     function loginCheck($mail){
         $pdo = $this->dbConnect();
-        $sql = "SELECT * FROM user_tbl2 WHERE usermail=?";
+        $sql = "SELECT * FROM members WHERE usermail=?";
         $ps=$pdo->prepare($sql);
         $ps->bindValue(1,$mail,PDO::PARAM_STR);
         $ps->execute();
