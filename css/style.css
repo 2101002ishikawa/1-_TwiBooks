@@ -1,3 +1,13 @@
+body{
+    background-color: #e9e9e9;
+}
+.card{
+    border: 3px solid #000000;
+    border-radius: 15px;
+}
+#newMemberButton{
+    margin-top: 30px;
+}
 .iconImg{
     width: 15%;
     margin-top: 40px;
@@ -16,4 +26,8 @@
 .logincard{
     border: 3px solid #000000;
     border-radius: 15px;
+}
+
+.error{
+    color: #ff0000;
 }
