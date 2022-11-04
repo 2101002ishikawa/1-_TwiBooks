@@ -8,6 +8,17 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>BookDetail</title>
+    <?php
+        require_once "DBManager";
+        $db=new DBManager;
+        $sql=SELECT *
+        $bookprice=
+        $bookimg=
+        $bookname=
+        
+        echo
+
+    ?>
 </head>
 <body>
     <div class="text-center">
@@ -16,10 +27,10 @@
         <br>
         <img src="book/自己啓発系統/筋.png" class="img-fluid iconImg"><br>
         <form action="BookDetail.php" method="post">
-        <input type="number" name=""><nobr><h4>値段テスト</h4></nobr>
-        <input type="submit" value="カートに入れる" >
+        <input type="number" name="kosuu"><nobr><h4>値段テスト</h4></nobr>
+        <input type="submit" name="cart"value="カートに入れる" >
         <br>
-        <input type="submit" value="今すぐ購入">
+        <input type="submit" name="buynow" value="今すぐ購入">
     </form>
      </div>
 
