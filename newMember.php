@@ -39,7 +39,9 @@
             $mem_pass = $_POST['pass'];
             if($db->mailAlready($mem_mail)){
                 $answer=$db->INSERTMember($mem_name,$mem_familyname,$mem_firstname,$mem_mail,$mem_pass);
-                $alert = "<script type='text/javascript'>alert('登録が完了しました');</script>";
+                $SESSION['usermail'] = $mem_mail;
+                $SESSION['username'] = $mem_name;
+                $alert = "<script type='text/javascript'>alert('登録が完了しました。');</script>";
                 echo $alert;
                 $SESSION['usermail'] = $mem_mail;
                 $SESSION['username'] = $mem_name;

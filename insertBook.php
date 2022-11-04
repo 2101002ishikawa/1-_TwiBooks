@@ -35,7 +35,7 @@
     <div class="row">
 
     </div>
-    <div class="card offset-3 col-6 card" style="padding-bottom:10%; ">
+    <div class="card offset-3 col-6" style="padding-bottom:10%; ">
         <h1 class="mt-5 mb-5 text-center">本の情報登録</h1>
         <form action="" name="insertBookForm" method="post">
             <div class="fixText">
