@@ -22,12 +22,13 @@ body{
 .subText{
     width: 150px;
 }
-
-.logincard{
-    border: 3px solid #000000;
-    border-radius: 15px;
-}
-
 .error{
     color: #ff0000;
 }
+.inputs{
+    width:80%;
+}
+.fixText{
+    padding-left:10%;
+}
+
