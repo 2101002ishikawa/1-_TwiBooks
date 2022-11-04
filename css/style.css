@@ -5,6 +5,10 @@ body{
     border: 3px solid #000000;
     border-radius: 15px;
 }
+.tweetcard{
+    border: 3px solid #000000;
+    background-color: #ffffff;
+}
 #newMemberButton{
     margin-top: 30px;
 }
