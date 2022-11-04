@@ -37,7 +37,7 @@ class DBManager{
 
     function loginCheck($mail){
         $pdo = $this->dbConnect();
-        $sql = "SELECT * FROM members WHERE usermail=?";
+        $sql = "SELECT * FROM members WHERE mem_mail=?";
         $ps=$pdo->prepare($sql);
         $ps->bindValue(1,$mail,PDO::PARAM_STR);
         $ps->execute();

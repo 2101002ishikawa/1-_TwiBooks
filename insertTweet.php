@@ -7,9 +7,6 @@
     <link rel="stylesheet" href="css/style.css">
     <title>TopPage</title>
     <style>
-        body{
-            background-color: #e9e9e9;
-        }
     </style>
 </head>
 <body>
@@ -19,7 +16,7 @@
     <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
     <br>
 
-    <div class="card offset-3 col-6 text-center logincard" style="padding-bottom:10%; ">
+    <div class="card offset-3 col-6 text-center" style="padding-bottom:10%; ">
         <h1 class="mt-5 mb-5">つぶやき投稿</h1>
     </div>
 

@@ -4,20 +4,25 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
     <title>本の情報登録</title>
     <style>
         body{
             background-color: #e9e9e9;
         }
+        .inputs{
+            width:80%;
+        }
+        .fixText{
+            padding-left:10%;
+        }
+        .card{
+            border: 3px solid #000000;
+            border-radius: 15px;
+        }
+        
     </style>
     <script>
-        const time= new Date();
-        const year = today.getFullYear();
-        const month = today.getMonth()+1;
-        const day = today.getDate();
-        const target = document.getElementById("days");
-        target.value=year+"-"+month+"-"+day;
+        
     </script>
 </head>
 <body>
@@ -27,22 +32,60 @@
     <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
     <br>
 
-    <div class="card offset-3 col-6 text-center logincard" style="padding-bottom:10%; ">
-        <h1 class="mt-5 mb-5">本の情報登録</h1>
-        <form action="/" name="insertBookForm">
-            <input type="text" name="shohin_mei">
-            <input type="text" list="bunrui">
-                <datalist id="bunrui">
-                    <option value="shosetu">小説</option>
-                    <option value="zasshi">雑誌</option>
-                    <option value="jikokeihatu">自己啓発</option>
-                    <option value="ehon">絵本</option>
-                    <option value="kouryakubon">攻略本</option>
-                    <option value="syashinsyuu">写真集</option>
-                </datalist>
-                <input type="date"name="hanbai_bi" id="days"
-                    value=""
-                    min="0001-01-01" max="2099-12-31">
+    <div class="row">
+
+    </div>
+    <div class="card offset-3 col-6 card" style="padding-bottom:10%; ">
+        <h1 class="mt-5 mb-5 text-center">本の情報登録</h1>
+        <form action="" name="insertBookForm" method="post">
+            <div class="fixText">
+                <h6>商品名：<font color="#ff0000">必須</font></h6>
+                <input type="text" name="shohin_mei" class="inputs"><br/>
+                <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>
+                <hr width="80%"><br/>
+            </div>
+            <div class="fixText">
+                <h6>ジャンル：<font color="#ff0000">必須</font></h6>
+                <label for="b1"><input type="radio" name="bunrui" value="文芸" id="b1"checked>文芸</label><br/>
+                <label for="b2"><input type="radio" name="bunrui" value="実用書" id="b2">実用書</label><br/>
+                <label for="b3"><input type="radio" name="bunrui" value="ビジネス書" id="b3">ビジネス書</label><br/>
+                <label for="b4"><input type="radio" name="bunrui" value="経済・経営" id="b4">経済・経営</label><br/>
+                <label for="b5"><input type="radio" name="bunrui" value="絵本" id="b5">絵本</label><br/>
+                <label for="b6"><input type="radio" name="bunrui" value="児童書" id="b6">児童書</label><br/>
+                <label for="b7"><input type="radio" name="bunrui" value="学習参考書" id="b7">学習参考書</label><br/>
+                <label for="b8"><input type="radio" name="bunrui" value="専門書" id="b8">専門書</label><br/>
+                <label for="b9"><input type="radio" name="bunrui" value="コミック" id="b9">コミック</label><br/>
+                <label for="b10"><input type="radio" name="bunrui" value="雑誌" id="b10">雑誌</label><br/><br/>
+                <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>
+                <hr width="80%"><br/>
+            </div>
+            <div class="fixText">
+                <h6>日付：<font color="#ff0000">必須</font></h6>
+                <input type="date" name="hanbai_bi" id="days" value="" class="inputs"><br/>
+                <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>
+                <hr width="80%"><br/>
+            </div>
+            <div class="fixText">
+                <h6>価格：<font color="#ff0000">必須</font></h6>
+                <input type="number" name="shohin_kakaku" class="inputs"><br/>
+                <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>
+                <hr width="80%"><br/>
+            </div>
+            <div class="fixText">
+                <h6>著者：</h6>
+                <input type="text" name="shohin_writer" class="inputs"><br/>
+                <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>
+                <hr width="80%"><br/>
+            </div>
+            <div class="fixText">
+                <h6>出版社：</h6>
+                <input type="text" name="shohin_conpany" class="inputs"><br/>
+                <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>
+                <hr width="80%"><br/>
+            </div>
+            <div class="text-center">
+                <input type="submit" value="登録" class="btn">
+            </div>
         </form>
     </div>
 
@@ -53,5 +96,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
     <script src="./script/script.js"></script>
+    <link rel="stylesheet" href="css/style.css">
 </body>
 </html>

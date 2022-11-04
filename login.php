@@ -38,9 +38,9 @@ function login($usermail,$pass){
         $counter=0;
         if(isset($userdata)==true){
             foreach ($userdata as $row) {
-                if(password_verify($pass,$row['pass'])){
-                    $_SESSION['usermail'] = $row['usermail'];
-                    $_SESSION['username'] = $row['username'];
+                if(password_verify($pass,$row['mem_pass'])){
+                    $_SESSION['usermail'] = $row['mem_mail'];
+                    $_SESSION['username'] = $row['mem_name'];
                     header('Location:loginSuccess.php');
                 }else{
                     $errorMessage="メールアドレス又はパスワードが違います";
@@ -122,7 +122,7 @@ if (!empty($_POST)) {
             <h1 class="mt-5">ログイン</h1>
             <form action="" method="post" name="form1">
                 mail:<input type="text" name="usermail" class="m-3"><br>
-                pass:<input type="pass" name="pass" class="m-3"><br>
+                pass:<input type="password" name="pass" class="m-3"><br>
                 <div>
                     <font color="#ff0000" id="error"><?php echo htmlspecialchars($errorMessage, ENT_QUOTES)."<br>"; ?></font>
                 </div>
