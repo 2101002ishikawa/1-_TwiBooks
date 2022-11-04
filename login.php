@@ -21,6 +21,11 @@
 //セッションを使う
 session_start();
 
+if(isset($SESSION['usermail'])&&isset($SESSION['username'])){
+header('location:loginsuccess.php');
+}
+
+
 // 変数の初期化
 $usermail = '';
 $pass = '';
@@ -33,9 +38,9 @@ function login($usermail,$pass){
         $counter=0;
         if(isset($userdata)==true){
             foreach ($userdata as $row) {
-                if(password_verify($pass,$row['pass'])){
-                    $_SESSION['usermail'] = $row['usermail'];
-                    $_SESSION['username'] = $row['username'];
+                if(password_verify($pass,$row['mem_pass'])){
+                    $_SESSION['usermail'] = $row['mem_mail'];
+                    $_SESSION['username'] = $row['mem_name'];
                     header('Location:loginSuccess.php');
                 }else{
                     $errorMessage="メールアドレス又はパスワードが違います";
@@ -106,14 +111,18 @@ if (!empty($_POST)) {
 ?>
 </head>
 <body>
-    <button onclick="location.href='./INSERT.php'">登録</button>
-    <button onclick="location.href='./login.php'">ログイン</button><br>
+    <button onclick="location.href='./newMember.php'">会員登録</button>
+    <button onclick="location.href='./login.php'">ログイン</button>
+    <button onclick="location.href='./insertBook.php'">本の登録</button>
+    <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
+    <br>
+
     <div class="row">
         <div class="card offset-3 col-6 text-center logincard" style="padding-bottom:10%; ">
             <h1 class="mt-5">ログイン</h1>
             <form action="" method="post" name="form1">
                 mail:<input type="text" name="usermail" class="m-3"><br>
-                pass:<input type="pass" name="pass" class="m-3"><br>
+                pass:<input type="password" name="pass" class="m-3"><br>
                 <div>
                     <font color="#ff0000" id="error"><?php echo htmlspecialchars($errorMessage, ENT_QUOTES)."<br>"; ?></font>
                 </div>
