@@ -35,4 +35,8 @@ body{
 .fixText{
     padding-left:10%;
 }
-
+.preview img {
+    width: 200px;
+    margin: 10px;
+    border: solid 1px silver;
+}

@@ -5,6 +5,7 @@ class DBManager{
         'webuser','abccsd2');
         return $pdo;
     }
+
     function INSERTMember($nickname,$familyname,$firstname,$mail,$pass){
         $pdo = $this->dbConnect();
         $in = $pdo->prepare("INSERT INTO members(mem_name,mem_familyname,mem_firstname,mem_mail,mem_pass) VALUES(?,?,?,?,?)");
@@ -14,6 +15,30 @@ class DBManager{
         $in->bindValue(4,$mail,PDO::PARAM_STR);
         $in->bindValue(5,password_hash($pass,PASSWORD_DEFAULT),PDO::PARAM_STR);
         $in->execute();
+    }
+
+    function shohinIdSearch($name,$bunrui,$day,$kakaku){
+        $pdo = $this->dbConnect();
+        $search = $pdo->prepare("SELECT shohin_id FROM shohins WHERE shohin_mei=? AND shohin_bunrui=? AND hanbai_bi=? AND shohin_kakaku=? LIMIT 1");
+        $search->bindValue(1,$name,PDO::PARAM_STR);
+        $search->bindValue(2,$bunrui,PDO::PARAM_STR);
+        $search->bindValue(3,$day,PDO::PARAM_STR);
+        $search->bindValue(4,$kakaku,PDO::PARAM_INT);
+        $search->execute();
+        return $search;
+
+    }
+
+    function INSERTShohin($name,$bunrui,$day,$kakaku){
+        $pdo = $this->dbConnect();
+        $inS = $pdo->prepare("INSERT INTO shohins(shohin_mei,shohin_bunrui,hanbai_bi,shohin_kakaku) VALUES(?,?,?,?)");
+        $inS->bindValue(1,$name,PDO::PARAM_STR);
+        $inS->bindValue(2,$bunrui,PDO::PARAM_STR);
+        $inS->bindValue(3,$day,PDO::PARAM_STR);
+        $inS->bindValue(4,$kakaku,PDO::PARAM_INT);
+        $inS->execute();
+        $id = $this->shohinIdSearch($name,$bunrui,$day,$kakaku);
+        
     }
 
     function mailAlready($mail){
