@@ -42,10 +42,22 @@
     </div>
     <div class="card offset-3 col-6" style="padding-bottom:10%; ">
         <h1 class="mt-5 mb-5 text-center">本の情報登録</h1>
-        <form action="insertShohinCheck.php" name="insertBookForm" method="post">
+        <form action="insertShohinCheck.php" name="insertBookForm" method="post" enctype="multipart/form-data">
             <div class="fixText">
                 <h6>商品名：<font color="#ff0000">必須</font></h6>
                 <input type="text" name="shohin_mei" class="inputs"><br/>
+                <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>
+                <hr width="80%"><br/>
+            </div>
+            <div class="fixText">
+                <h6>バーコード一段目(ISBNコード)：</h6>
+                <input type="text" name="isbn" class="inputs"><br/>
+                <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>
+                <hr width="80%"><br/>
+            </div>
+            <div class="fixText">
+                <h6>バーコード二段目(日本図書コード)：</h6>
+                <input type="text" name="tosyo" class="inputs"><br/>
                 <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>
                 <hr width="80%"><br/>
             </div>
@@ -60,7 +72,8 @@
                 <label for="b7"><input type="radio" name="bunrui" value="学習参考書" id="b7">学習参考書</label><br/>
                 <label for="b8"><input type="radio" name="bunrui" value="専門書" id="b8">専門書</label><br/>
                 <label for="b9"><input type="radio" name="bunrui" value="コミック" id="b9">コミック</label><br/>
-                <label for="b10"><input type="radio" name="bunrui" value="雑誌" id="b10">雑誌</label><br/><br/>
+                <label for="b10"><input type="radio" name="bunrui" value="雑誌" id="b10">雑誌</label><br/>
+                <label for="b11"><input type="radio" name="bunrui" value="その他" id="b11">その他</label><br/><br/>
                 <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>
                 <hr width="80%"><br/>
             </div>
@@ -78,7 +91,7 @@
             </div>
             <div class="fixText">
                 <h6>画像<font color="#ff0000"></font></h6>
-                <input type="file" name="tweets_img" class="inputs" id="example" multiple><br/>
+                <input type="file" name="shohin_img" class="inputs" id="example" multiple><br/>
                 <!-- 👇ここにプレビュー画像を追加する -->
                 <div id="preview"></div>
                 <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>
