@@ -1,4 +1,4 @@
-CREATE TABLE shohindetais(
+CREATE TABLE shohindetails(
     shohin_id BIGINT NOT NULL,
     shohindetail_id BIGINT NOT NULL AUTO_INCREMENT,
     shohin_img MEDIUMBLOB,

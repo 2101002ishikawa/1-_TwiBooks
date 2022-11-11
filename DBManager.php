@@ -1,8 +1,8 @@
 <?php
 class DBManager{
     private function  dbConnect(){
-        $pdo = new PDO('mysql:host=localhost;dbname=webdb;charset=utf8',
-        'webuser','abccsd2');
+        $pdo = new PDO('mysql:host=localhost;dbname=twibooks;charset=utf8',
+        'Twibooks','abccsd2');
         return $pdo;
     }
 
@@ -67,16 +67,35 @@ class DBManager{
         }
         return $id;
     }
+    function getShohin($id){
+        $pdo = $this->dbConnect();
+        $getShohin = $pdo->prepare("SELECT * FROM shohins WHERE shohin_id = ?");
+        $getShohin->bindValue(1,$id,PDO::PARAM_INT);
+        $getShohin->execute();
+        return $getShohin->fetchAll();
+    }
 
     function INSERTShohinImg($id,$content,$name,$type,$size){
         $pdo = $this->dbConnect();
-        $inImg = $pdo->prepare("INSERT INTO shohindetails(shohin_id,shohin_img,image_name,image_type,image_size,created_at) VALUES(?,?,?,?,?,now())");
-        $inImg ->bindValue(1,$id,PDO::PARAM_INT);
-        $inImg ->bindValue(2,$content,PDO::PARAM_STR);
-        $inImg ->bindValue(3,$name,PDO::PARAM_STR);
-        $inImg ->bindValue(4,$type,PDO::PARAM_STR);
-        $inImg ->bindValue(5,$size,PDO::PARAM_STR);
-        $inImg ->execute();
+        for ($i=0; $i<count($name); $i++) { 
+            $inImg = $pdo->prepare("INSERT INTO shohindetails(shohin_id,shohin_img,image_name,image_type,image_size,created_at) VALUES(?,?,?,?,?,now())");
+            $inImg ->bindValue(1,$id,PDO::PARAM_INT);
+            $inImg ->bindValue(2,file_get_contents($content[$i]),PDO::PARAM_STR);
+            $inImg ->bindValue(3,$name[$i],PDO::PARAM_STR);
+            $inImg ->bindValue(4,$type[$i],PDO::PARAM_STR);
+            $inImg ->bindValue(5,$size[$i],PDO::PARAM_STR);
+            $inImg ->execute();
+        }
+    }
+    function getShohinImg($id){
+        $pdo = $this->dbConnect();
+        $getSImage = $pdo->prepare("SELECT * FROM shohindetails WHERE shohin_id = ?");
+        $getSImage ->bindValue(1,$id,PDO::PARAM_STR);
+        $getSImage ->execute();
+        $result = $getSImage->fetch();
+        header('Content-Type:' .$result['image_type']);
+        echo $result['shohin_image'];
+        exit();
     }
 
     function mailAlready($mail){

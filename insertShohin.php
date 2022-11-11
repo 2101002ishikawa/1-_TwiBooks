@@ -91,7 +91,7 @@
             </div>
             <div class="fixText">
                 <h6>画像<font color="#ff0000"></font></h6>
-                <input type="file" name="shohin_img" class="inputs" id="example" multiple><br/>
+                <input type="file" name="shohin_img[]" class="inputs" id="example" multiple><br/>
                 <!-- 👇ここにプレビュー画像を追加する -->
                 <div id="preview"></div>
                 <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>
