@@ -11,7 +11,9 @@
     <?php
         require_once "DBManager";
         $db=new DBManager;
-        $sql=SELECT *
+        $shohin = $db->getShohins($id);
+        $image = $db->getShohinImg($id);
+        echo "<img src=$image>";
         $bookprice=
         $bookimg=
         $bookname=
@@ -25,6 +27,7 @@
         <p>名前テスト</p>
         <h3>本の名前テスト</h3>
         <br>
+        <?php echo "<p>てすとぽっちゃま</p>"?>
         <img src="book/自己啓発系統/筋.png" class="img-fluid iconImg"><br>
         <form action="BookDetail.php" method="post">
         <input type="number" name="kosuu"><nobr><h4>値段テスト</h4></nobr>

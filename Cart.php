@@ -19,6 +19,7 @@
             <br>
         </div>
         <p>小計 値段テスト</p>
+        <?php echo "<p>てすとぽっちゃま</p>"?>
         <input type="submit" value="購入手続きへ">
     </div>
 
