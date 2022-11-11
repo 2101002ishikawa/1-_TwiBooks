@@ -12,11 +12,14 @@
 <body>
     <div class="text-center">
         <h2>カート</h2>
-        <p>本の名前テスト</p> 
-        <p>単価 円</p>      
-        <input type="number" name="">
-        <br>
+        <div class="card offset-3 col-6">
+            <p>本の名前テスト</p> 
+            <p>単価 円</p>      
+            <input type="number" name="kosuu">
+            <br>
+        </div>
         <p>小計 値段テスト</p>
+        <?php echo "<p>てすとぽっちゃま</p>"?>
         <input type="submit" value="購入手続きへ">
     </div>
 
