@@ -12,6 +12,16 @@
         body{
             background-color: whitesmoke;
         }
+        .iconImg{
+            border-radius:50%;
+            margin-bottom:40px;
+        }
+        label{
+            margin-bottom:20px;
+            display:inline-block;
+            text-align:right;
+            width:150px;
+        }
     </style>
 </head>
 <body>
@@ -22,27 +32,23 @@
     <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
     <br>
 <div class="text-center">
-    <img src="img/proto_icon.png" class="img-fluid iconImg">
+    <img src="img/proto_icon.png" class="iconImg"  style="width:45%">
     <form action="MemberPage.html" method="post">
-        ニックネーム：
+        <label>ニックネーム：</label>
         <input type="text" name="PName" class="Settingtext"><br>
-        所在地：     
+        <label>所在地：</label>
         <input type="text" name="PAddress" class="Settingtext"><br>
-        コメント:    
+        <label>コメント:</label>    
         <input type="text" name="PComment" class="Settingtext"><br>
-        <p>
-            <div class="col-2 offset-4">
-                苗字：
-                <input type="text" name="FirstName" class="subText Settingtext">
-            </div>
-           <div class="col-2 offset-1">
-                名前：
-                <input type="text" name="LastName" class="subText Settingtext ">            
-           </div>
-        </p><br>
+        <label>苗字：</label>
+        <input type="text" name="FirstName" class="Settingtext"><br>
+        <label>名前：</label>
+        <input type="text" name="LastName" class="Settingtext "><br>
+        <form action="MemberPass.html" method="post">
+            <input type="submit" value="戻る">
+        </form>
         <input type="submit" value="変更を保存">
     </form>
-    
 </div>
 <link rel="stylesheet" href="css/style.css?v=2">
 </body>
