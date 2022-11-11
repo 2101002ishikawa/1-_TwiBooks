@@ -15,12 +15,21 @@
         .iconImg{
             border-radius:50%;
             margin-bottom:40px;
+            margin-left:10%;
+            margin-right:10%;
         }
         label{
             margin-bottom:20px;
             display:inline-block;
             text-align:right;
-            width:150px;
+            width:112px;
+            margin-left:5%;
+            margin-right:5%;
+        }
+        .btn{
+            position: fixed;
+            bottom: 0;
+            text-align:center;
         }
     </style>
 </head>
@@ -33,7 +42,6 @@
     <br>
 <div class="text-center">
     <img src="img/proto_icon.png" class="iconImg"  style="width:45%">
-    <form action="MemberPage.html" method="post">
         <label>ニックネーム：</label>
         <input type="text" name="PName" class="Settingtext"><br>
         <label>所在地：</label>
@@ -44,11 +52,12 @@
         <input type="text" name="FirstName" class="Settingtext"><br>
         <label>名前：</label>
         <input type="text" name="LastName" class="Settingtext "><br>
-        <form action="MemberPass.html" method="post">
-            <input type="submit" value="戻る">
-        </form>
-        <input type="submit" value="変更を保存">
-    </form>
+</div>
+<div class="offset-1 col-3">
+    <button class="btn" style="width:36%" onclick="location.href='./MemberSetting.html'">戻る</button>
+</div>
+<div class="offset-6 col-3">
+    <button class="btn" style="width:36%" onclick="location.href='./MemberPass.html'">設定完了</button>
 </div>
 <link rel="stylesheet" href="css/style.css?v=2">
 </body>
