@@ -25,6 +25,12 @@
     ?>
 </head>
 <body>
+    <button onclick="location.href='./top.php'">トップページ</button>
+    <button onclick="location.href='./newMember.php'">会員登録</button>
+    <button onclick="location.href='./login.php'">ログイン</button>
+    <button onclick="location.href='./insertBook.php'">本の登録</button>
+    <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
+    <br>
     <div class="text-center">
        <h3><?php=$bookname?></h3>   <!-- 本の名前  -->
        <?php=$bookwriter?>  <!-- 本の著者 -->
