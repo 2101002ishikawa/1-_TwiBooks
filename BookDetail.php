@@ -12,25 +12,27 @@
         require_once "DBManager";
         $db=new DBManager;
         $shohin = $db->getShohins($id);
-        $image = $db->getShohinImg($id);
+        $bookimage = $db->getShohinImg($id);
         echo "<img src=$image>";
-        $bookprice=
-        $bookimg=
-        $bookname=
+        $bookname= $db->getShohin($id);
+        $booktwiter= $db->getShohin($id);
+        $bookkakaku= $db->getShohin($id);
         
-        echo
+        
+        
+        
 
     ?>
 </head>
 <body>
     <div class="text-center">
-        <p>名前テスト</p>
-        <h3>本の名前テスト</h3>
+       <h3><?php=$bookname?></h3>   <!-- 本の名前  -->
+       <?php=$bookwriter?>  <!-- 本の著者 -->
+        <?php echo "<img src=$image>"?> <!-- 本の画像 -->
         <br>
-        <?php echo "<p>てすとぽっちゃま</p>"?>
-        <img src="book/自己啓発系統/筋.png" class="img-fluid iconImg"><br>
-        <form action="BookDetail.php" method="post">
-        <input type="number" name="kosuu"><nobr><h4>値段テスト</h4></nobr>
+        <input type="number" name="kosuu">
+        <form action="ここに遷移する場所" method="post">
+        <h4><?php=$bookkakaku?></h4>
         <input type="submit" name="cart"value="カートに入れる" >
         <br>
         <input type="submit" name="buynow" value="今すぐ購入">
