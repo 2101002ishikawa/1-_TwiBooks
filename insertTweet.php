@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TopPage</title>
+    <title>つぶやき投稿</title>
     <style>
         .fixText{
             padding-left:10%;
@@ -20,13 +20,13 @@
     <button onclick="location.href='./top.php'">トップページ</button>
     <button onclick="location.href='./newMember.php'">会員登録</button>
     <button onclick="location.href='./login.php'">ログイン</button>
-    <button onclick="location.href='./insertBook.php'">本の登録</button>
+    <button onclick="location.href='./insertShohin.php'">本の登録</button>
     <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
     <br>
 
     <div class="card offset-3 col-6" style="padding-bottom:10%;">
         <h1 class="mt-5 mb-5 text-center">つぶやき投稿</h1>
-        <form action="" method="post">
+        <form action="" method="post" enctype="multipart/form-data">
             <div class="fixText">
                 <h6>mail:<font color="#ff0000">必須</font></h6>
                 <input type="text" name="mem_mail" class="inputs"><br/>

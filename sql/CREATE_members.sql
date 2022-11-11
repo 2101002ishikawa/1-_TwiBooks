@@ -1,5 +1,5 @@
 CREATE TABLE members(
-    mem_id          INT(8)          NOT NULL AUTO_INCREMENT,
+    mem_id          INT        NOT NULL AUTO_INCREMENT,
     mem_bunrui      INT             NOT NULL,
     mem_name        VARCHAR(200)    NOT NULL,
     mem_familyname  VARCHAR(100)    NOT NULL,
