@@ -11,7 +11,8 @@
     <?php
     require_once "DBManager";
     $db=new DBManager;
-    
+    $bookkakaku=$db->getShohin($id);
+
     
     ?>
 </head>
