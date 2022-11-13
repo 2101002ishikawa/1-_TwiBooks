@@ -27,7 +27,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <title>Document</title>
+    <title>商品登録の確認</title>
 </head>
 <body>
     <div class="row">
@@ -35,43 +35,11 @@
             <ul class="list-unstyled">
                 <?php for($i = 0; $i < count($images); $i++): ?>
                     <li class="media mt-5">
-                        <a href="#lightbox" data-toggle="modal" data-slide-to="<?= $i; ?>">
-                            <img src="image.php?id=<?= $images[$i]['image_id']; ?>" width="100" height="auto" class="mr-3">
-                        </a>
+                        <img src="image.php?id=<?= $id; ?>?detailId=<?=$i;?>" width="100" height="auto" class="mr-3">    
                     </li>
                 <?php endfor; ?>
             </ul>
         </div>
-    </div>
-    <div class="modal carousel slide" id="lightbox" tabindex="-1" role="dialog" data-ride="carousel" style="position:fixed;">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-        <div class="modal-body">
-            <ol class="carousel-indicators">
-                <?php for ($i = 0; $i < 3; $i++): ?>
-                    <li data-target="#lightbox" data-slide-to="<?= $i; ?>" <?php if ($i == 0) echo 'class="active"'; ?>></li>
-                <?php endfor; ?>
-            </ol>
-
-            <div class="carousel-inner">
-                <?php for ($i = 0; $i < 3; $i++): ?>
-                    <div class="carousel-item <?php if ($i == 0) echo 'active'; ?>">
-                    <img src="cat.jpg" class="d-block w-100">
-                    </div>
-                <?php endfor; ?>
-            </div>
-
-            <a class="carousel-control-prev" href="#lightbox" role="button" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#lightbox" role="button" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </a>
-        </div>
-        </div>
-    </div>
     </div>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 </body>

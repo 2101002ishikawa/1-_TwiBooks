@@ -92,9 +92,8 @@ class DBManager{
         $getSImage = $pdo->prepare("SELECT * FROM shohindetails WHERE shohin_id = ?");
         $getSImage ->bindValue(1,$id,PDO::PARAM_STR);
         $getSImage ->execute();
-        $result = $getSImage->fetch();
-        header('Content-Type:' .$result['image_type']);
-        echo $result['shohin_image'];
+        return $getSImage->fetch();
+        
         exit();
     }
 

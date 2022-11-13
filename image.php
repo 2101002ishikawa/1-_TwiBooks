@@ -11,6 +11,6 @@ $stmt->execute();
 $image = $stmt->fetch();
 
 header('Content-type: ' . $image['image_type']);
-echo $image['image_content'];
+echo $image['shohin_img'];
 exit();
 ?>
