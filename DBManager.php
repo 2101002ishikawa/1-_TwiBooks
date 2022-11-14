@@ -59,7 +59,7 @@ class DBManager{
             $upisb ->bindValue(2,$id,PDO::PARAM_INT);
             $upisb ->execute();
         }
-        if(!empty($bookcode)){
+        if(!empty($tosyo)){
             $upcod = $pdo->prepare("UPDATE shohins set shohin_bookcode = ? WHERE shohin_id = ?");
             $upcod ->bindValue(1,$tosyo,PDO::PARAM_INT);
             $upcod ->bindValue(2,$id,PDO::PARAM_INT);
@@ -77,24 +77,35 @@ class DBManager{
 
     function INSERTShohinImg($id,$content,$name,$type,$size){
         $pdo = $this->dbConnect();
-        for ($i=0; $i<count($name); $i++) { 
-            $inImg = $pdo->prepare("INSERT INTO shohindetails(shohin_id,shohin_img,image_name,image_type,image_size,created_at) VALUES(?,?,?,?,?,now())");
+        for ($i=0; $i<count($name); $i++) {
+            $inImg = $pdo->prepare("INSERT INTO shohindetails(shohin_id,shohindetail_id,shohin_img,image_name,image_type,image_size,created_at) VALUES(?,?,?,?,?,?,now())");
             $inImg ->bindValue(1,$id,PDO::PARAM_INT);
-            $inImg ->bindValue(2,file_get_contents($content[$i]),PDO::PARAM_STR);
-            $inImg ->bindValue(3,$name[$i],PDO::PARAM_STR);
-            $inImg ->bindValue(4,$type[$i],PDO::PARAM_STR);
-            $inImg ->bindValue(5,$size[$i],PDO::PARAM_STR);
+            $inImg ->bindValue(2,$i,PDO::PARAM_INT);
+            $inImg ->bindValue(3,file_get_contents($content[$i]),PDO::PARAM_STR);
+            $inImg ->bindValue(4,$name[$i],PDO::PARAM_STR);
+            $inImg ->bindValue(5,$type[$i],PDO::PARAM_STR);
+            $inImg ->bindValue(6,$size[$i],PDO::PARAM_STR);
             $inImg ->execute();
         }
     }
-    function getShohinImg($id){
+    function getShohinImg($id,$detailid){
         $pdo = $this->dbConnect();
-        $getSImage = $pdo->prepare("SELECT * FROM shohindetails WHERE shohin_id = ?");
-        $getSImage ->bindValue(1,$id,PDO::PARAM_STR);
-        $getSImage ->execute();
-        return $getSImage->fetch();
-        
-        exit();
+        $sql = 'SELECT * FROM shohindetails WHERE shohin_id = :shohin_id AND shohindetail_id = :shohindetail_id ';
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(':shohin_id', $id, PDO::PARAM_INT);
+        $stmt->bindValue(':shohindetail_id', $detailid, PDO::PARAM_INT);
+        $stmt->execute();
+        $image = $stmt->fetch();
+        return $image;
+    }
+    function getShohinImgCount($id){
+        $pdo = $this->dbConnect();
+        $getCount = $pdo->prepare("SELECT COUNT(*) FROM shohindetails WHERE shohin_id = ?");
+        $getCount ->bindValue(1,$id,PDO::PARAM_INT);
+        $getCount ->execute();
+        $data = $getCount->fetchAll();
+        return count($data);
+
     }
 
     function mailAlready($mail){

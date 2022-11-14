@@ -1,6 +1,7 @@
 <?php
     session_start();
     require_once "DBManager.php";
+    require_once 'functions.php';
     $db = new DBManager;
     try {
         $id=$db->INSERTShohin($_POST['shohin_mei'],$_POST['bunrui'],$_POST['hanbai_bi'],$_POST['shohin_kakaku'],$_POST['shohin_writer'],$_POST['shohin_conpany'],$_POST['isbn'],$_POST['tosyo']);
@@ -10,9 +11,9 @@
         }
         $shohin = $db->getShohin($id);
         foreach ($shohin as $shohinData) {
-            echo "<p>書籍名：$shohinData[shohin_mei]<br>著者：$shohinData[shohin_writer]<br>出版社：$shohinData[shohin_conpany]<br>価格：$shohinData[shohin_kakaku]<br>ISBNコード：$shohinData[shohin_ISBN]<br>書籍コード：$shohinData[shohin_bookcode]<br>ジャンル：$shohinData[shohin_bunrui]<br>販売日：$shohinData[hanbai_bi]<br></p>";
+         
         }
-        $images = $db->getShohinImg($id);
+
     } catch (Exception $e) {
         echo $e.getMessage();
     }
@@ -33,9 +34,23 @@
     <div class="row">
         <div class="col-md-8 border-right">
             <ul class="list-unstyled">
-                <?php for($i = 0; $i < count($images); $i++): ?>
+                <?php for($i = 0; $i < $db->getShohinImgCount($id); $i++): ?>
                     <li class="media mt-5">
-                        <img src="image.php?id=<?= $id; ?>?detailId=<?=$i;?>" width="100" height="auto" class="mr-3">    
+                    <?php
+                        
+
+                        $pdo = connectDB();
+
+                        $sql = 'SELECT * FROM shohindetails WHERE shohin_id = :shohin_id AND shohindetail_id = :shohindetail_id LIMIT 1';
+                        $stmt = $pdo->prepare($sql);
+                        $stmt->bindValue(':shohin_id', $id, PDO::PARAM_INT);
+                        $stmt->bindValue(':shohindetail_id', $i, PDO::PARAM_INT);
+                        $stmt->execute();
+                        $image = $stmt->fetch();
+                        header('Content-type: ' . $image['image_type']);
+                        echo $image['shohin_img'];
+                        echo "<p>書籍名：$shohinData[shohin_mei]<br>著者：$shohinData[shohin_writer]<br>出版社：$shohinData[shohin_conpany]<br>価格：$shohinData[shohin_kakaku]<br>ISBNコード：$shohinData[shohin_ISBN]<br>書籍コード：$shohinData[shohin_bookcode]<br>ジャンル：$shohinData[shohin_bunrui]<br>販売日：$shohinData[hanbai_bi]<br></p>";
+                    ?>      
                     </li>
                 <?php endfor; ?>
             </ul>
