@@ -12,16 +12,19 @@
     require_once "DBManager";
     $db=new DBManager;
     $bookkakaku=$db->getShohin($id);
+    $book
+    $userplace=
+    $
 
     
     ?>
 </head>
 <body>
     <div class="text-center">
-        <p>商品代</p>　<p>値段</p>
+        <p>単価</p>　<p>値段</p>
         <h3>お届け先住所</h3>
         <br>
-        <form action="BookDetail.php" method="post"></form>
+        <form action="Cart.php" method="post"></form>
         <input type="text" name="住所">
         <br>
         <p>送料 円</p>
