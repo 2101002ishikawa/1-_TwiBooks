@@ -24,8 +24,7 @@
         <h2>カート</h2>
         <div class="card offset-3 col-6">
             <p><?php=$bookname?></p> <!-- 本の名前 -->
-            <p><?php=$bookkakaku?>円</p>    
-              <!-- 単価 -->
+            <p><?php=$bookkakaku?>円</p>    <!-- 単価 -->
             <input type="number" name="kosuu">
             <br>
         </div>
