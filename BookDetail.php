@@ -17,13 +17,6 @@
         $bookname = $book['shohin_mei'];
         $booktwiter= $book['shohin_writer'];
         $bookkakaku= $book['shohin_kakaku'];
-        
-
-        
-        
-        
-        
-
     ?>
 </head>
 <body>
