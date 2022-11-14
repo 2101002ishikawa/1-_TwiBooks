@@ -11,12 +11,14 @@
     <?php
         require_once "DBManager";
         $db=new DBManager;
-        $shohin = $db->getShohins($id);
         $bookimage = $db->getShohinImg($id);
         echo "<img src=$image>";
-        $bookname= $db->getShohin($id);
-        $booktwiter= $db->getShohin($id);
-        $bookkakaku= $db->getShohin($id);
+        $book= $db->getShohin($id);
+        $bookname = $book['shohin_mei'];
+        $booktwiter= $book['shohin_writer'];
+        $bookkakaku= $book['shohin_kakaku'];
+        
+
         
         
         
@@ -34,7 +36,7 @@
     <div class="text-center">
        <h3><?php=$bookname?></h3>   <!-- 本の名前  -->
        <?php=$bookwriter?>  <!-- 本の著者 -->
-        <?php echo "<img src=$image>"?> <!-- 本の画像 -->
+        <?php echo "<img src=$bookimage>"?> <!-- 本の画像 -->
         <br>
         <input type="number" name="kosuu">
         <form action="ここに遷移する場所" method="post">

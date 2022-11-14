@@ -51,7 +51,7 @@
             </div>
             <div class="fixText">
                 <h6>バーコード一段目(ISBNコード)：</h6>
-                <input type="text" name="isbn" class="inputs"><br/>
+                <input type="text" name="isbn" class="inputs" required><br/>
                 <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>
                 <hr width="80%"><br/>
             </div>
@@ -91,7 +91,7 @@
             </div>
             <div class="fixText">
                 <h6>画像<font color="#ff0000"></font></h6>
-                <input type="file" name="shohin_img" class="inputs" id="example" multiple><br/>
+                <input type="file" name="shohin_img[]" class="inputs" id="example" multiple><br/>
                 <!-- 👇ここにプレビュー画像を追加する -->
                 <div id="preview"></div>
                 <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>
