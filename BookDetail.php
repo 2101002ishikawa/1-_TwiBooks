@@ -14,9 +14,10 @@
         $shohin = $db->getShohins($id);
         $bookimage = $db->getShohinImg($id);
         echo "<img src=$image>";
-        $bookname= $db->getShohin($id);
-        $booktwiter= $db->getShohin($id);
-        $bookkakaku= $db->getShohin($id);
+        $book= $db->getShohin($id);
+        $bookname = $book['shohin_mei'];
+        $booktwiter= $book['shohin_writer'];
+        $bookkakaku= $book['shohin_kakaku'];
         
         
         
