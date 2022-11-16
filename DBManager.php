@@ -1,8 +1,8 @@
 <?php
 class DBManager{
     private function  dbConnect(){
-        $pdo = new PDO('mysql:host=localhost;dbname=twibooks;charset=utf8',
-        'Twibooks','abccsd2');
+        $pdo = new PDO('mysql:host=localhost;dbname=webdb;charset=utf8',
+        'webuser','abccsd2');
         return $pdo;
     }
 
