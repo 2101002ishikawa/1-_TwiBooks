@@ -1,0 +1,81 @@
+buy(購入情報
+
+id	
+mail	
+date	
+total	
+
+
+buydetails(商品毎の個数
+
+id		バイ
+detailsid	購入詳細
+id		商品
+count		商品
+
+
+carts(マイカート
+
+mail	メールアドレス
+id	商品
+count	商品
+
+
+members(会員
+
+id		会員id
+bunrui		ジャンル
+name		ニックネーム	
+familyname	名
+firstname	性
+mail		メールアドレス
+pass		パスワード
+place		
+comment		プロフィール
+img		画像
+
+
+shohindetails(商品詳細
+
+id	商品
+id	商品詳細
+img	商品
+name	イメージ
+type	イメージ
+size	イメージ
+at	登録した時間？タイムスタンプ
+
+
+shohins(商品
+
+id		商品
+ISBN		本の一意のコードだったはず
+bookcode	
+mei		商品
+bunrui		商品
+bi		？
+kakaku		商品単価だと思う
+writer		作者
+conpany		商品の文庫？
+
+
+tweetdetails(ツイート詳細
+
+id	ツイート
+id	ツイート詳細
+img	ツイート画像
+name	画像
+type	画像
+size	画像
+at	生成時間？
+
+
+tweets(ツイート
+
+id		ツイート
+mail		メールアドレス
+contents	ツイート
+date		ツイート
+id		商品
+good		ツイート
+bad		ツイート
