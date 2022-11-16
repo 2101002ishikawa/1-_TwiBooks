@@ -3,22 +3,18 @@
     require_once "DBManager.php";
     require_once 'functions.php';
     $db = new DBManager;
-    try {
         $id=$db->INSERTShohin($_POST['shohin_mei'],$_POST['bunrui'],$_POST['hanbai_bi'],$_POST['shohin_kakaku'],$_POST['shohin_writer'],$_POST['shohin_conpany'],$_POST['isbn'],$_POST['tosyo']);
 
         if(!empty($_FILES['shohin_img'])){
             $db->INSERTShohinImg($id,$_FILES['shohin_img']['tmp_name'],$_FILES['shohin_img']['name'],$_FILES['shohin_img']['type'],$_FILES['shohin_img']['size']);
         }
+        $shohintagArray;
+        $shohinDataArray;
         $shohin = $db->getShohin($id);
         foreach ($shohin as $shohinData) {
-         
+            $shohintagArray = array("書籍名","著者","出版社","価格","ISBNコード","書籍コード","ジャンル","販売日");
+        $shohinDataArray= array($shohinData['shohin_mei'],$shohinData['shohin_writer'],$shohinData['shohin_conpany'],$shohinData['shohin_kakaku'],$shohinData['shohin_ISBN'],$shohinData['shohin_bookcode'],$shohinData['shohin_bunrui'],$shohinData['hanbai_bi']);
         }
-
-    } catch (Exception $e) {
-        echo $e.getMessage();
-    }
-    
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,29 +25,75 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <title>商品登録の確認</title>
+    <style>
+        table{
+            width: 100%;
+            border-collapse: collapse;
+            border-spacing: 0;
+        }
+
+        table th,table td{
+            padding: 10px 0;
+            text-align: center;
+        }
+        .type{
+            background-color: #f2f2f2;
+            border:solid 1px #927141;
+        }
+        .data{
+            background-color: #ffffff;
+            border:solid 1px #927141;
+        }
+
+        table td{
+            border-bottom: solid 2px #ddd;
+            text-align: center;
+            padding: 10px 0;
+        }
+        table tr{
+            margin-bottom:10px;
+        }
+    </style>
 </head>
 <body>
     <div class="row">
-        <div class="col-md-8 border-right">
+        <div class="border-right text-center">
+            <div>
+                <?php
+                    if($db->getShohinImgCount($id)!=0){
+                        echo "<h1>登録が完了しました</h1>";
+                    }
+                ?>
+            </div>
+            <div class="offset-3 col-6" ><table class="row">
+            <?php
+                for($i=0; $i<count($shohintagArray);$i++){
+                    if(empty($shohinDataArray)==true){
+                        $shohinDataArray[$i] = "-";
+                    }
+                    echo "<tr class='mb-1'><th class='type col-3'>$shohintagArray[$i]</th><th class='data col-9'>$shohinDataArray[$i]</th></tr>";
+                }
+                echo "<tr class=mb-1><th class=type>商品画像</th><th class=data>";
+            ?>
             <ul class="list-unstyled">
-                <?php for($i = 0; $i < $db->getShohinImgCount($id); $i++): ?>
-                    <li class="media mt-5">
-                    <?php
-                        
-
-                        $pdo = connectDB();
-
-                        $sql = 'SELECT * FROM shohindetails WHERE shohin_id = :shohin_id AND shohindetail_id = :shohindetail_id LIMIT 1';
-                        $stmt = $pdo->prepare($sql);
-                        $stmt->bindValue(':shohin_id', $id, PDO::PARAM_INT);
-                        $stmt->bindValue(':shohindetail_id', $i, PDO::PARAM_INT);
-                        $stmt->execute();
-                        $image = $stmt->fetch();
-                        header('Content-type: ' . $image['image_type']);
-                        echo $image['shohin_img'];
-                        echo "<p>書籍名：$shohinData[shohin_mei]<br>著者：$shohinData[shohin_writer]<br>出版社：$shohinData[shohin_conpany]<br>価格：$shohinData[shohin_kakaku]<br>ISBNコード：$shohinData[shohin_ISBN]<br>書籍コード：$shohinData[shohin_bookcode]<br>ジャンル：$shohinData[shohin_bunrui]<br>販売日：$shohinData[hanbai_bi]<br></p>";
-                    ?>      
-                    </li>
+            <?php for($i = 1; $i < $db->getShohinImgCount($id)+1; $i++): ?>
+                <li class="media d-block mx-auto">
+                <?php
+                        $image = $db->getShohinImg($id,$i);
+                ?>
+                <div>
+                    <img src="data:images/png;base64,<?=base64_encode($image['shohin_img'])?>" class="img-fluid p-2">
+                </div>
+                </li>
+            <?php
+                echo "</th></tr>
+                </table></div>";
+            ?>
+            
+                
+                    
+                    
+                    
                 <?php endfor; ?>
             </ul>
         </div>

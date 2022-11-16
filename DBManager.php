@@ -1,8 +1,8 @@
 <?php
 class DBManager{
     private function  dbConnect(){
-        $pdo = new PDO('mysql:host=localhost;dbname=twibooks;charset=utf8',
-        'Twibooks','abccsd2');
+        $pdo = new PDO('mysql:host=	mysql208.phy.lolipop.lan;dbname=LAA1417832-twibooks;charset=utf8',
+        'Twibooks','twitterrespect');
         return $pdo;
     }
 
@@ -77,14 +77,14 @@ class DBManager{
 
     function INSERTShohinImg($id,$content,$name,$type,$size){
         $pdo = $this->dbConnect();
-        for ($i=0; $i<count($name); $i++) {
+        for ($i=1; $i<count($name)+1; $i++) {
             $inImg = $pdo->prepare("INSERT INTO shohindetails(shohin_id,shohindetail_id,shohin_img,image_name,image_type,image_size,created_at) VALUES(?,?,?,?,?,?,now())");
             $inImg ->bindValue(1,$id,PDO::PARAM_INT);
             $inImg ->bindValue(2,$i,PDO::PARAM_INT);
-            $inImg ->bindValue(3,file_get_contents($content[$i]),PDO::PARAM_STR);
-            $inImg ->bindValue(4,$name[$i],PDO::PARAM_STR);
-            $inImg ->bindValue(5,$type[$i],PDO::PARAM_STR);
-            $inImg ->bindValue(6,$size[$i],PDO::PARAM_STR);
+            $inImg ->bindValue(3,file_get_contents($content[$i-1]),PDO::PARAM_STR);
+            $inImg ->bindValue(4,$name[$i-1],PDO::PARAM_STR);
+            $inImg ->bindValue(5,$type[$i-1],PDO::PARAM_STR);
+            $inImg ->bindValue(6,$size[$i-1],PDO::PARAM_STR);
             $inImg ->execute();
         }
     }
