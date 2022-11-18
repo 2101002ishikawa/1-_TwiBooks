@@ -12,8 +12,7 @@
     require_once "DBManager";
     $db=new DBManager;
     $bookkakaku=$db->getShohin($id);
-    $book=
-    $userplace=$db->getMember($id)
+    $userplace=$db->getMember($id);
     $commission=114;
 
     
