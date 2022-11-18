@@ -35,7 +35,7 @@
         <input type="number" name="kosuu">
         <form action="ここに遷移する場所" method="post">
         <h4><?php=$bookkakaku?></h4>
-        <input type="submit" name="cart"value="カートに入れる" >
+        <input type="button" name="cart" value="カートに入れる" >
         <br>
         <input type="submit" name="buynow" value="今すぐ購入">
     </form>
