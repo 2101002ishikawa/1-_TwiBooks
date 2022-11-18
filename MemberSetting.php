@@ -32,6 +32,10 @@
             text-align:center;
         }
     </style>
+
+    <?php
+
+    ?>
 </head>
 <body>
     <button onclick="location.href='./top.php'">トップページ</button>
@@ -44,20 +48,29 @@
     <img src="img/proto_icon.png" class="iconImg"  style="width:45%">
         <label>ニックネーム：</label>
         <input type="text" name="PName" class="Settingtext"><br>
+        <?php if(!empty($error['PName'])&&$error['PName']===blank):?>
+            <p class="error">ニックネームを入力してください</p>
+        <?php endif ?>
+
         <label>所在地：</label>
         <input type="text" name="PAddress" class="Settingtext"><br>
+
         <label>コメント:</label>    
         <input type="text" name="PComment" class="Settingtext"><br>
+
         <label>苗字：</label>
         <input type="text" name="FirstName" class="Settingtext"><br>
+
         <label>名前：</label>
         <input type="text" name="LastName" class="Settingtext "><br>
-</div>
-<div class="offset-1 col-3">
-    <button class="btn" style="width:36%" onclick="location.href='./MemberSetting.html'">戻る</button>
-</div>
-<div class="offset-6 col-3">
-    <button class="btn" style="width:36%" onclick="location.href='./MemberPass.html'">完了</button>
+
+
+        <div class="col-3">
+            <button class="btn" style="width:36%" onclick="location.href='./MemberSetting.html'">戻る</button>
+        </div>
+        <div class="offset-5 col-3">
+            <button class="btn" style="width:36%" onclick="location.href='./MemberPass.html'">完了</button>
+        </div>
 </div>
 <link rel="stylesheet" href="css/style.css?v=2">
 </body>
