@@ -43,10 +43,10 @@ body{
 }
 
 .is-defolt{
-    //ボタンのデフォルトのCSS
+    /* ボタンのデフォルトのCSS */
 }
 .is-active{
-    //ボタンがアクティブのCSS
+    /* ボタンがアクティブのCSS */
     font-size:32px;
     background-color:red;
 }
