@@ -3,14 +3,14 @@
     require_once "DBManager.php";
     require_once 'functions.php';
     $db = new DBManager;
-    $id=$db->INSERTShohin($_POST['shohin_mei'],$_POST['bunrui'],$_POST['hanbai_bi'],$_POST['shohin_kakaku'],$_POST['shohin_writer'],$_POST['shohin_conpany'],$_POST['isbn'],$_POST['tosyo']);
+    $shohinId=$db->INSERTShohin($_POST['shohin_mei'],$_POST['bunrui'],$_POST['hanbai_bi'],$_POST['shohin_kakaku'],$_POST['shohin_writer'],$_POST['shohin_conpany'],$_POST['isbn'],$_POST['tosyo']);
 
     if(!empty($_FILES['shohin_img'])){
-        $db->INSERTShohinImg($id,$_FILES['shohin_img']['tmp_name'],$_FILES['shohin_img']['name'],$_FILES['shohin_img']['type'],$_FILES['shohin_img']['size']);
+        $db->INSERTShohinImg($shohinId,$_FILES['shohin_img']['tmp_name'],$_FILES['shohin_img']['name'],$_FILES['shohin_img']['type'],$_FILES['shohin_img']['size']);
     }
     $shohintagArray;
     $shohinDataArray;
-    $shohin = $db->getShohin($id);
+    $shohin = $db->getShohin($shohinId);
     foreach ($shohin as $shohinData) {
         $shohintagArray = array("書籍名","著者","出版社","価格","ISBNコード","書籍コード","ジャンル","販売日");
     $shohinDataArray= array($shohinData['shohin_mei'],$shohinData['shohin_writer'],$shohinData['shohin_conpany'],$shohinData['shohin_kakaku'],$shohinData['shohin_ISBN'],$shohinData['shohin_bookcode'],$shohinData['shohin_bunrui'],$shohinData['hanbai_bi']);
@@ -66,7 +66,7 @@
         <div class="border-right text-center">
             <div>
                 <?php
-                    if($db->getShohinImgCount($id)!=0){
+                    if($db->getShohinImgCount($shohinId)!=0){
                         echo "<h1>登録が完了しました</h1>";
                     }
                 ?>
@@ -82,10 +82,10 @@
                 echo "<tr class=mb-1><th class=type>商品画像</th><th class=data>";
             ?>
             <ul class="list-unstyled">
-            <?php for($i = 1; $i < $db->getShohinImgCount($id)+1; $i++): ?>
+            <?php for($i = 1; $i < $db->getShohinImgCount($shohinId)+1; $i++): ?>
                 <li class="media d-block mx-auto">
                     <?php
-                            $image[$i] = $db->getShohinImg($id,$i);
+                            $image[$i] = $db->getShohinImg($shohinId,$i);
                     ?>
                     <div>
                         <img src="data:images/png;base64,<?=base64_encode($image[$i]['shohin_img'])?>" class="img-fluid p-2">

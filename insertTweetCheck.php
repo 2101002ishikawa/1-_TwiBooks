@@ -2,10 +2,12 @@
     require_once "DBManager.php";
     require_once 'functions.php';
     $db = new DBManager;
-    $id=$db->INSERTTweet($_POST['mem_mail'],$_POST['shohin_id'],$_POST['tweets_contents']);
-    
-
-    
+    $startFlag = false;
+    $tweetId=$db->INSERTTweet($_POST['mem_mail'],$_POST['shohin_id'],$_POST['tweets_contents']);
+    if(!empty($_FILES['tweets_img'])){
+        $db->INSERTTweetImg($tweetId,$_FILES['tweets_img']['tmp_name'],$_FILES['tweets_img']['name'],$_FILES['tweets_img']['type'],$_FILES['tweets_img']['size']);
+    }
+    $tweet = $db->getTweet($tweetId)->fetchAll();
 ?>
 <!DOCTYPE html>
 <html lang="ja">
@@ -22,8 +24,42 @@
     <button onclick="location.href='./insertShohin.php'">本の登録</button>
     <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
     <br>
+    
+    <?php 
+        
+        echo 
+        "<div class=tweetcard>
+        <div>
+            <img src=img/proto_icon.png style=height:50px; width:50px; text-align:center><nobr>
+            <p style=display:inline-block>".$tweet[0]['mem_mail']."</p>
+        </div>
+        <p class=text mt-2>".$tweet[0]['tweets_contents']."</p>";?>
+        <?php for($i = 1; $i < $db->getTweetImgCount($tweetId)+1; $i++):
+            $image[$i] = $db->getShohinImg($tweetId,$i);?>
+                <li class=media d-block mx-auto>
+                <div>
+                    <img src="data:images/png;base64,<?=base64_encode($image[$i]['shohin_img'])?>" class="img-fluid p-2">
+                </div>
+            </li>
+        <?php endfor ?>
 
-
+        <?php echo
+        "<div>
+            <div class=good style=display:inline-block;>
+                <i class=bi bi-hand-thumbs-up></i>
+                <p style=display:inline-block;>1000</p>
+            </div>
+            <div class=bad style=display:inline-block;>
+                <i class=bi bi-hand-thumbs-down style=display:inline-block;></i>
+                <p style=display:inline-block;>0</p>
+            </div>
+            <div class=detail style=display:inline-block; text-align:right>
+                <p ><a href=BookDetail.html style=text-align: right;>詳細へ</a></p>
+            </div>
+        </div>
+    </div>";
+    ?>
+    
     
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
