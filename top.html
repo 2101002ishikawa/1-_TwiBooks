@@ -63,6 +63,18 @@
 
         <img src="img/01-5.jpg" class="photo" style="width:65%">
         </div>
+        <div id="app">
+            <p>
+                <span>good  ：</span>
+                <input :class="{'is-active':goodActive}" class="is-defolt"
+                type="button" @click="goodtogle()" value="👍"/>{{good}}
+            </p>
+            <p>
+                <span>bad    ：</span>
+                <input :class="{'is-active':badActive}" class="is-defolt"
+                type="button" @click="badtogle()" value="👎"/>{{bad}}
+            </p>
+        </div>
     </div>
     <hr class="hrr" size="3px">
 
