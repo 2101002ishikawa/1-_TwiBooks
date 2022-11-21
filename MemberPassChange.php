@@ -17,8 +17,8 @@
             display:inline-block;
             text-align:right;
             width:130px;
-            margin-left:5%;
-            margin-right:5%;
+            margin-left:4%;
+            margin-right:4%;
         }
         .btn{
             position: fixed;
@@ -38,20 +38,32 @@
             現在のパスワード
         </label>
         <input type="text" name="OldPass" class="Settingtext"><br>
+        <?php if(!empty($error['OldPass'])&&$error['OldPass']===blank):?>
+            <p class="error">現在のパスワードを入力してください</p>
+        <?php endif ?>
+        
         <labael>
             新しいパスワード
         </labael>
-        <input type="text" name="1NewPass" class="Settingtext"><br>
+        <input type="text" name="1NewPass" class="Settingtext"><br><br>
+        <?php if(!empty($error['1NewPass'])&&$error['1NewPass']===blank):?>
+            <p class="error">新しいパスワードを入力してください</p>
+        <?php endif ?>
+
         <label>
-            パスワード確認
+            パスワード再入力
         </label>
         <input type="text" name="2NewPass" class="Settingtext"><br>
-    </div>
-    <div class="offset-1 col-3">
-        <button class="btn" style="width:36%" onclick="location.href='./MemberSetting.html'">戻る</button>
-    </div>
-    <div class="offset-6 col-3">
-        <button class="btn" style="width:36%" onclick="location.href='./MemberPass.html'">完了</button>
+        <?php if(!empty($error['2NewPass'])&&$error['2NewPass']===blank):?>
+            <p class="error">新しいパスワードを入力してください</p>
+        <?php endif ?>
+
+        <div class=" col-3">
+            <button class="btn" style="width:36%" onclick="location.href='./MemberSetting.html'">戻る</button>
+        </div>
+        <div class="offset-5 col-3">
+            <button class="btn" style="width:36%" onclick="location.href='./MemberPass.html'">完了</button>
+        </div>
     </div>
 
     <link rel="stylesheet" href="css/style.css?v=2">

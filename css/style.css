@@ -5,7 +5,8 @@ body{
     border: 3px solid #000000;
     border-radius: 15px;
 }
-.tweetcard{
+
+.tweetcardddddddd{
     border: 3px solid #000000;
     background-color: #ffffff;
 }
@@ -39,4 +40,13 @@ body{
     width: 200px;
     margin: 10px;
     border: solid 1px silver;
+}
+
+.is-defolt{
+    /* ボタンのデフォルトのCSS */
+}
+.is-active{
+    /* ボタンがアクティブのCSS */
+    font-size:32px;
+    background-color:red;
 }

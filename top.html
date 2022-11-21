@@ -6,6 +6,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <title>TopPage</title>
+
+    <style>
+        .hrr{
+        background-color:black;
+        border: none;
+        }
+        .iconImg{
+            border-radius:50%;
+            margin-right:3% ;
+            margin-top:0px;
+            float: left;
+        }
+        .photo{
+            border-radius:10%;
+            margin-top:15px;
+            margin-left:19%;
+            margin-right:5%;
+        }
+        .tweetcard{
+            margin-left:3%;
+            margin-right:4%;
+        }
+        h7{
+            display: inline-block;
+            width: 82%;
+        }
+    </style>
 </head>
 <body>
     <button onclick="location.href='./top.php'">トップページ</button>
@@ -13,7 +40,98 @@
     <button onclick="location.href='./login.php'">ログイン</button>
     <button onclick="location.href='./insertShohin.php'">本の登録</button>
     <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
-    <br>
+    <div class="tweetcard">
+        <div>
+        <div hight:100px>
+            <img src="img/download-1.jpg" class="iconImg"><br><br>
+            <h6>
+                <b>ヒトカゲ</b>
+            </h6>
+            <h7>
+                ペェェェヨォォォーーーッッッ
+                ペェェェヨォォォーーーッッッ
+                ペェェェヨォォォーーーッッッ
+                ペェェェヨォォォーーーッッッ
+                ペェェェヨォォォーーーッッッ
+                ペェェェヨォォォーーーッッッ
+                ペェェェヨォォォーーーッッッ
+                ペェェェヨォォォーーーッッッ
+                ペェェェヨォォォーーーッッッ
+                ペェェェヨォォォーーーッッッ
+            </h7>
+        </div>
+
+        <img src="img/01-5.jpg" class="photo" style="width:65%">
+        </div>
+        <div id="app">
+            <p>
+                <span>good  ：</span>
+                <input :class="{'is-active':goodActive}" class="is-defolt"
+                type="button" @click="goodtogle()" value="👍"/>{{good}}
+            </p>
+            <p>
+                <span>bad    ：</span>
+                <input :class="{'is-active':badActive}" class="is-defolt"
+                type="button" @click="badtogle()" value="👎"/>{{bad}}
+            </p>
+        </div>
+    </div>
+    <hr class="hrr" size="3px">
+
+    <div class="tweetcard">
+        <div>
+        <div hight:100px>
+            <img src="img/download-2.jpg" class="iconImg"><br><br>
+            <h6>
+                <b>ミズゴロウ</b>
+            </h6>
+            <h7>
+                ゴンロゴンロー
+                ゴンロゴンロー
+                ゴンロゴンロー
+                ゴンロゴンロー
+                ゴンロゴンロー
+                ゴンロゴンロー
+                ゴンロゴンロー
+                ゴンロゴンロー
+                ゴンロゴンロー
+                ゴンロゴンロー
+            </h7>
+        </div>
+
+        <img src="img/01-5.jpg" class="photo" style="width:65%">
+        </div>
+    </div>
+    <hr class="hrr" size="3px">
+
+    <div class="tweetcard">
+        <div>
+        <div hight:100px>
+            <img src="img/download-3.jpg" class="iconImg"><br><br>
+            <h6>
+                <b>ピカチュウ</b>
+            </h6>
+            <h7>
+                ピ~カ~! ピカチュウ! ピカ ピカ ピカチュウ ピカ ピカ ピカチュウ!
+                ピッカチュ ピッカチュ ピッカッチュウ
+                ピカピカ ピッカチュ ピッカッチュウ
+                ピカピカピカピカ
+                ピカピカピカピカ
+                ピカピカ
+                ピカピカ
+                ピカ
+                ピカ
+                ピッカ~
+            </h7>
+        </div>
+
+        <img src="img/01-5.jpg" class="photo" style="width:65%">
+        </div>
+    </div>
+    <hr class="hrr" size="3px">
+    
+
+    <!--
     <div class="row">
         <div class="offset-3 col-6 tweetcard mt-5">
             <div>
@@ -76,6 +194,7 @@
             </div>
         </div>
     </div>
+-->
 
 
     
