@@ -85,7 +85,6 @@ class DBManager{
         $getShohin->execute();
         return $getShohin->fetchAll();
     }
-
     function INSERTShohinImg($id,$content,$name,$type,$size){
         $pdo = $this->dbConnect();
         $inImg=array();
@@ -120,14 +119,18 @@ class DBManager{
     }
 
     function INSERTTweet($mail,$shohinId,$tweet){
-        $pdo = $this->dbConnect();
-        $insTweet = $pdo->prepare("INSERT INTO tweets(mem_mail,shohin_id,tweets_contents) VALUES(?,?,?)");
-        $insTweet ->bindValue(1,$mail,PDO::PARAM_STR);
-        $insTweet ->bindValue(2,$shohinId,PDO::PARAM_STR);
-        $insTweet ->bindValue(3,$tweet,PDO::PARAM_STR);
-        $insTweet ->execute();
-        $id=$this->tweetsIdSearch($mail);
-        return $id;
+        if(count($this->getShohin($shohinId))!=0){
+            $pdo = $this->dbConnect();
+            $insTweet = $pdo->prepare("INSERT INTO tweets(mem_mail,shohin_id,tweets_contents) VALUES(?,?,?)");
+            $insTweet ->bindValue(1,$mail,PDO::PARAM_STR);
+            $insTweet ->bindValue(2,$shohinId,PDO::PARAM_STR);
+            $insTweet ->bindValue(3,$tweet,PDO::PARAM_STR);
+            $insTweet ->execute();
+            $id=$this->tweetsIdSearch($mail);
+            return $id;
+        }else{
+            echo "<script type='text/javascript'>alert('商品IDが設定されていない数値に設定されています。\nもう一度お確かめください。');</script>";
+        }
     }
     function INSERTTweetImg($id,$content,$name,$type,$size){
         $pdo = $this->dbConnect();
@@ -165,8 +168,7 @@ class DBManager{
         $stmt->bindValue(1, $id, PDO::PARAM_INT);
         $stmt->bindValue(2, $detailid, PDO::PARAM_INT);
         $stmt->execute();
-        $image = $stmt->fetch();
-        return $image;
+        return $stmt->fetchAll();
     }
 
     function mailAlready($mail){

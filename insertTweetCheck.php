@@ -34,11 +34,14 @@
             <p style=display:inline-block>".$tweet[0]['mem_mail']."</p>
         </div>
         <p class=text mt-2>".$tweet[0]['tweets_contents']."</p>";?>
-        <?php for($i = 1; $i < $db->getTweetImgCount($tweetId)+1; $i++):
-            $image[$i] = $db->getShohinImg($tweetId,$i);?>
+        <?php for($i = 0; $i < $db->getTweetImgCount($tweetId); $i++):
+            $image[$i] = $db->getShohinImg($tweetId,$i);
+            var_dump($image[0]);
+        ?>
+                    
                 <li class=media d-block mx-auto>
                 <div>
-                    <img src="data:images/png;base64,<?=base64_encode($image[$i]['shohin_img'])?>" class="img-fluid p-2">
+                    <img src="data:images/png;base64,<?=base64_encode($image[$i]['tweets_img'])?>" class="img-fluid p-2">
                 </div>
             </li>
         <?php endfor ?>
