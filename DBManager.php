@@ -163,10 +163,10 @@ class DBManager{
     }
     function getTweetImg($id,$detailid){
         $pdo = $this->dbConnect();
-        $sql = 'SELECT * FROM tweetdetails WHERE tweets_id = ? AND tweetdetails_id = ? LIMIT 1';
+        $sql = "SELECT * FROM tweetdetails WHERE tweets_id = ? AND tweetdetails_id = ? LIMIT 1";
         $stmt = $pdo->prepare($sql);
-        $stmt->bindValue(1, $id, PDO::PARAM_INT);
-        $stmt->bindValue(2, $detailid, PDO::PARAM_INT);
+        $stmt->bindValue(1,$id,PDO::PARAM_INT);
+        $stmt->bindValue(2,$detailid,PDO::PARAM_INT);
         $stmt->execute();
         return $stmt->fetchAll();
     }

@@ -16,6 +16,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TopPage</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="./script/script.js"></script>
+    <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
     <button onclick="location.href='./top.php'">トップページ</button>
@@ -24,7 +30,6 @@
     <button onclick="location.href='./insertShohin.php'">本の登録</button>
     <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
     <br>
-    
     <?php 
         
         echo 
@@ -34,41 +39,31 @@
             <p style=display:inline-block>".$tweet[0]['mem_mail']."</p>
         </div>
         <p class=text mt-2>".$tweet[0]['tweets_contents']."</p>";?>
-        <?php for($i = 0; $i < $db->getTweetImgCount($tweetId); $i++):
-            $image[$i] = $db->getShohinImg($tweetId,$i);
-            var_dump($image[0]);
-        ?>
-                    
-                <li class=media d-block mx-auto>
+        <?php for($i = 0; $i < $db->getTweetImgCount($tweetId); $i++):?>
+            <li class="media d-block mx-auto">
+                <?php $image[$i] = $db->getShohinImg($tweetId,$i);?>
                 <div>
-                    <img src="data:images/png;base64,<?=base64_encode($image[$i]['tweets_img'])?>" class="img-fluid p-2">
+                    <img src="data:images/<?=$image[$i]['image_type']?>;base64,<?=base64_encode($image[$i]['tweets_img'])?>" class="img-fluid p-2">
+                    </div>
                 </div>
             </li>
         <?php endfor ?>
 
         <?php echo
-        "<div>
-            <div class=good style=display:inline-block;>
-                <i class=bi bi-hand-thumbs-up></i>
-                <p style=display:inline-block;>1000</p>
+            "<div>
+                <div class=good style=display:inline-block;>
+                    <i class=bi bi-hand-thumbs-up></i>
+                    <p style=display:inline-block;>1000</p>
+                </div>
+                <div class=bad style=display:inline-block;>
+                    <i class=bi bi-hand-thumbs-down style=display:inline-block;></i>
+                    <p style=display:inline-block;>0</p>
+                </div>
+                <div class=detail style=display:inline-block; text-align:right>
+                    <p ><a href=BookDetail.html style=text-align: right;>詳細へ</a></p>
+                </div>
             </div>
-            <div class=bad style=display:inline-block;>
-                <i class=bi bi-hand-thumbs-down style=display:inline-block;></i>
-                <p style=display:inline-block;>0</p>
-            </div>
-            <div class=detail style=display:inline-block; text-align:right>
-                <p ><a href=BookDetail.html style=text-align: right;>詳細へ</a></p>
-            </div>
-        </div>
-    </div>";
-    ?>
-    
-    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <script src="./script/script.js"></script>
-    <link rel="stylesheet" href="css/style.css?v=2">
+        </div>";
+        ?>
 </body>
 </html>
