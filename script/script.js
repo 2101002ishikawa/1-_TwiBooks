@@ -1,25 +1,34 @@
 new Vue({
-    el: '#app',
+    el:'#app',
     data(){
         return{
-            good:0,
-            bad:0,
-            goodActive: false,
-            badActive: false
-            };
-        },
+            isGood:false,
+            isBad:false,
+            good:100,
+            bad:10
+        };
+    },
     methods:{
-        goodtogle(){
-            this.goodActive = !this.goodActive;
-            if(this.goodActive){
+        goodButton(){
+            if(this.isBad){
+                this.isBad=!this.isBad;
+                this.bad--;
+            }
+            this.isGood=!this.isGood;
+            if(this.isGood){
                 return this.good++;
             }else{
                 return this.good--;
             }
         },
-        badtogle(){
-            this.badActive = !this.badActive;
-            if(this.badActive){
+
+        badButton(){
+            if(this.isGood){
+                this.isGood=!this.isGood;
+                this.good--;
+            }
+            this.isBad=!this.isBad;
+            if(this.isBad){
                 return this.bad++;
             }else{
                 return this.bad--;
