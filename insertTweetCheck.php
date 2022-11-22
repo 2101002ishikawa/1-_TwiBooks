@@ -33,24 +33,23 @@
     <?php 
         
         echo 
-        "<div class=tweetcard>
+        "<div class=tweetcard1>
         <div>
             <img src=img/proto_icon.png style=height:50px; width:50px; text-align:center><nobr>
             <p style=display:inline-block>".$tweet[0]['mem_mail']."</p>
         </div>
-        <p class=text mt-2>".$tweet[0]['tweets_contents']."</p>";?>
+        <p class=text mt-2>".$tweet[0]['tweets_contents']."</p><ul>";?>
         <?php for($i = 0; $i < $db->getTweetImgCount($tweetId); $i++):?>
             <li class="media d-block mx-auto">
-                <?php $image[$i] = $db->getShohinImg($tweetId,$i);?>
+                <?php $image[$i] = $db->getTweetImg($tweetId,$i);?>
                 <div>
-                    <img src="data:images/<?=$image[$i]['image_type']?>;base64,<?=base64_encode($image[$i]['tweets_img'])?>" class="img-fluid p-2">
-                    </div>
+                    <img src="data:images/png;base64,<?=base64_encode($image[$i]['tweets_img'])?>" class="img-fluid p-2">
                 </div>
             </li>
         <?php endfor ?>
 
         <?php echo
-            "<div>
+            "</ul><div>
                 <div class=good style=display:inline-block;>
                     <i class=bi bi-hand-thumbs-up></i>
                     <p style=display:inline-block;>1000</p>

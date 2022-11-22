@@ -168,7 +168,7 @@ class DBManager{
         $stmt->bindValue(1,$id,PDO::PARAM_INT);
         $stmt->bindValue(2,$detailid,PDO::PARAM_INT);
         $stmt->execute();
-        return $stmt->fetchAll();
+        return $stmt->fetch();
     }
 
     function mailAlready($mail){
