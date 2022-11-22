@@ -32,6 +32,37 @@
             display: inline-block;
             width: 82%;
         }
+
+        .goodbtn{
+        border:none;
+        background-color: transparent;
+        margin-top:10px;
+        margin-left:70px;
+        }
+        .badbtn{
+        border:none;
+        background-color: transparent;
+        }
+
+        .goodbtn.is-Good{
+        animation: rainbow 3s infinite;
+        }
+
+        .badbtn.is-Bad{
+        color:blue
+            }
+
+        @keyframes rainbow{
+        0%{color:#ff0053;}
+        12%{color:#ff5353;}
+        24%{color:#ffcf53;}
+        36%{color:#e8ff53;}
+        48%{color:#53ff5d;}
+        60%{color:#53ffbc;}
+        72%{color:#5393ff;}
+        84%{color:#ca53ff;}
+        100%{color:#ff53bd;}
+        }   
     </style>
 </head>
 <body>
@@ -60,23 +91,28 @@
                 ペェェェヨォォォーーーッッッ
             </h7>
         </div>
-
         <img src="img/01-5.jpg" class="photo" style="width:65%">
         </div>
         <div id="app">
-            <p>
-                <span>good  ：</span>
-                <input :class="{'is-active':goodActive}" class="is-defolt"
-                type="button" @click="goodtogle()" value="👍"/>{{good}}
-            </p>
-            <p>
-                <span>bad    ：</span>
-                <input :class="{'is-active':badActive}" class="is-defolt"
-                type="button" @click="badtogle()" value="👎"/>{{bad}}
-            </p>
+            <button
+            :class="{'is-Good':isGood}"
+            class="goodbtn"
+            @click="goodButton"
+            ><i class="bi bi-hand-thumbs-up-fill"></i><br>
+            </button>
+            {{good}}
+    
+            <button
+            :class="{'is-Bad':isBad}"
+            class="badbtn"
+            @click="badButton"
+            ><i class="bi bi-hand-thumbs-down-fill"></i><br>
+            </button>
+            {{bad}}
         </div>
     </div>
     <hr class="hrr" size="3px">
+
 
     <div class="tweetcard">
         <div>
@@ -98,11 +134,11 @@
                 ゴンロゴンロー
             </h7>
         </div>
-
         <img src="img/01-5.jpg" class="photo" style="width:65%">
         </div>
     </div>
     <hr class="hrr" size="3px">
+
 
     <div class="tweetcard">
         <div>

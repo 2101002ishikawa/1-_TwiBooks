@@ -41,12 +41,3 @@ body{
     margin: 10px;
     border: solid 1px silver;
 }
-
-.is-defolt{
-    /* ボタンのデフォルトのCSS */
-}
-.is-active{
-    /* ボタンがアクティブのCSS */
-    font-size:32px;
-    background-color:red;
-}
