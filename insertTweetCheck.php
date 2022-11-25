@@ -1,6 +1,5 @@
 <?php
     require_once "DBManager.php";
-    require_once 'functions.php';
     $db = new DBManager;
     $startFlag = false;
     $tweetId=$db->INSERTTweet($_POST['mem_mail'],$_POST['shohin_id'],$_POST['tweets_contents']);
