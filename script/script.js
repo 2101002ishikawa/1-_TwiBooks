@@ -1,5 +1,5 @@
 new Vue({
-    el:'#app',
+    el:'.app',
     data(){
         return{
             isGood:false,
