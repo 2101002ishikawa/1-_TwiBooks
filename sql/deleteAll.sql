@@ -1,0 +1,1 @@
+DROP TABLE buy,buydetails,carts,shohindetails,shohins,members,tweetdetails,tweets;

@@ -42,7 +42,7 @@
     </div>
     <div class="card offset-3 col-6" style="padding-bottom:10%; ">
         <h1 class="mt-5 mb-5 text-center">本の情報登録</h1>
-        <form action="/insertShohinCheck.php" name="insertBookForm" method="post" enctype="multipart/form-data">
+        <form action="/web/1-_TwiBooks/insertShohinCheck.php" name="insertBookForm" method="post" enctype="multipart/form-data">
             <div class="fixText">
                 <h6>商品名：<font color="#ff0000">必須</font></h6>
                 <input type="text" name="shohin_mei" class="inputs"><br/>

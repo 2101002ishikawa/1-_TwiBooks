@@ -26,7 +26,7 @@
 
     <div class="card offset-3 col-6" style="padding-bottom:10%;">
         <h1 class="mt-5 mb-5 text-center">つぶやき投稿</h1>
-        <form action="" method="post" enctype="multipart/form-data">
+        <form action="insertTweetCheck.php" method="post" enctype="multipart/form-data">
             <div class="fixText">
                 <h6>mail:<font color="#ff0000">必須</font></h6>
                 <input type="text" name="mem_mail" class="inputs"><br/>
@@ -47,7 +47,7 @@
             </div>
             <div class="fixText">
                 <h6>画像<font color="#ff0000"></font></h6>
-                <input type="file" name="tweets_img" class="inputs" id="example" multiple><br/>
+                <input type="file" name="tweets_img[]" class="inputs" id="example" multiple><br/>
                 <!-- 👇ここにプレビュー画像を追加する -->
                 <div id="preview"></div>
                 <h6><font color="#ff0000">エラーメッセージをここに表示</font></h6>

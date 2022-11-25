@@ -31,6 +31,17 @@ class DBManager{
         }
         return $id;
     }
+    function tweetsIdSearch($mail){
+        $pdo = $this->dbConnect();
+        $search = $pdo->prepare("SELECT tweets_id FROM tweets WHERE mem_mail = ? ORDER BY tweets_id DESC LIMIT 1");
+        $search->bindValue(1,$mail,PDO::PARAM_STR);
+        $search->execute();
+        $id=0;
+        foreach($search as $key){
+            $id=$key['tweets_id'];
+        }
+        return $id;
+    }
 
     function INSERTShohin($name,$bunrui,$day,$kakaku,$writer,$conpany,$isbn,$tosyo){
         $pdo = $this->dbConnect();
@@ -74,7 +85,6 @@ class DBManager{
         $getShohin->execute();
         return $getShohin->fetchAll();
     }
-
     function INSERTShohinImg($id,$content,$name,$type,$size){
         $pdo = $this->dbConnect();
         $inImg=array();
@@ -106,6 +116,59 @@ class DBManager{
         $getCount ->execute();
         $data = $getCount->rowCount();
         return $data;
+    }
+
+    function INSERTTweet($mail,$shohinId,$tweet){
+        if(count($this->getShohin($shohinId))!=0){
+            $pdo = $this->dbConnect();
+            $insTweet = $pdo->prepare("INSERT INTO tweets(mem_mail,shohin_id,tweets_contents) VALUES(?,?,?)");
+            $insTweet ->bindValue(1,$mail,PDO::PARAM_STR);
+            $insTweet ->bindValue(2,$shohinId,PDO::PARAM_STR);
+            $insTweet ->bindValue(3,$tweet,PDO::PARAM_STR);
+            $insTweet ->execute();
+            $id=$this->tweetsIdSearch($mail);
+            return $id;
+        }else{
+            echo "<script type='text/javascript'>alert('商品IDが設定されていない数値に設定されています。\nもう一度お確かめください。');</script>";
+        }
+    }
+    function INSERTTweetImg($id,$content,$name,$type,$size){
+        $pdo = $this->dbConnect();
+        $inImg=array();
+        for ($i=0; $i<count($name); $i++) {
+            $inImg[$i]=$pdo->prepare("INSERT INTO tweetdetails(tweets_id,tweetdetails_id,tweets_img,image_name,image_type,image_size,created_at) VALUES(?,?,?,?,?,?,now())");
+            $inImg[$i]->bindValue(1,$id,PDO::PARAM_INT);
+            $inImg[$i]->bindValue(2,$i,PDO::PARAM_INT);
+            $inImg[$i]->bindValue(3,file_get_contents($content[$i]),PDO::PARAM_STR);
+            $inImg[$i]->bindValue(4,$name[$i],PDO::PARAM_STR);
+            $inImg[$i]->bindValue(5,$type[$i],PDO::PARAM_STR);
+            $inImg[$i]->bindValue(6,$size[$i],PDO::PARAM_INT);
+            $inImg[$i]->execute();
+        }
+    }
+    function getTweetImgCount($id){
+        $pdo = $this->dbConnect();
+        $getCount = $pdo->prepare("SELECT * FROM tweetdetails WHERE tweets_id = ?");
+        $getCount ->bindValue(1,$id,PDO::PARAM_INT);
+        $getCount ->execute();
+        $data = $getCount->rowCount();
+        return $data;
+    }
+    function getTweet($id){
+        $pdo = $this->dbConnect();
+        $getTweet = $pdo->prepare("SELECT * FROM tweets WHERE tweets_id = ?");
+        $getTweet->bindValue(1,$id,PDO::PARAM_INT);
+        $getTweet->execute();
+        return $getTweet;
+    }
+    function getTweetImg($id,$detailid){
+        $pdo = $this->dbConnect();
+        $sql = "SELECT * FROM tweetdetails WHERE tweets_id = ? AND tweetdetails_id = ? LIMIT 1";
+        $stmt = $pdo->prepare($sql);
+        $stmt->bindValue(1,$id,PDO::PARAM_INT);
+        $stmt->bindValue(2,$detailid,PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetch();
     }
 
     function mailAlready($mail){
