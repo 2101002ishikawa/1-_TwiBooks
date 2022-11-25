@@ -64,7 +64,7 @@
     <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
     <br>
 
-    <div class="card offset-3 col-6 text-center logincard" style="padding-bottom:10%; ">
+    <div class="card offset-3 col-6 text-center dlogincar" style="padding-bottom:10%; ">
         <h1 class="mt-5 mb-5">新規会員登録</h1>
         <form method="post" name="newmemberform">
             ニックネーム:　　　　　　　　<br><input type="text" name="nickName" class="m-3" placeholder="シンイチ"><br>
