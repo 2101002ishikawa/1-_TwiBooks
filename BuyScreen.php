@@ -8,6 +8,19 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <title>BuyScreen</title>
+    <style>
+        body{
+            background-color: #e9e9e9;
+        }
+        .logincard{
+            border: 3px solid #000000;
+            border-radius: 15px;
+        }
+        .card{
+            border: 3px solid #000000;
+            border-radius: 15px;
+        } 
+    </style>
     <?php
     require_once "DBManager";
     $db=new DBManager;
@@ -19,7 +32,7 @@
     ?>
 </head>
 <body>
-    <div class="text-center">
+    <div class="card offset-3 col-6 text-center">
         <p>単価</p>　<p>値段</p>
         <h3>お届け先住所</h3>
         <br>
@@ -35,7 +48,7 @@
         <p>手数料 円</p>
         <br>
         <p>合計 円</p>
-        <input type="submit" value="購入">
+        <input type="submit" value="購入" class="mb-3 btn">
     </form>
      </div>
 
