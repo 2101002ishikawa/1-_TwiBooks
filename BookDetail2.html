@@ -16,6 +16,10 @@
             border: 3px solid #000000;
             border-radius: 15px;
         }
+        .card{
+            border: 3px solid #000000;
+            border-radius: 15px;
+        }
     </style>
     <?php
         require_once "DBManager";
@@ -38,8 +42,8 @@
     <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
     <br>
     <div class="row">
-        <div class="card offset-3 col-6 text-center" style="padding-bottom:10%; ">
-       <h3 class="mt-5"><?php=$bookname?></h3>   <!-- 本の名前  -->
+    <div class="card offset-3 col-6 text-center dlogincar" style="padding-bottom:10%; ">
+       <h3 class="mt-5 mb-5"><?php=$bookname?></h3>   <!-- 本の名前  -->
        <?php=$bookwriter?>  <!-- 本の著者 -->
         <?php echo "<img src=$bookimage>"?> <!-- 本の画像 -->
         <br>
