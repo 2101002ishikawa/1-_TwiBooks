@@ -94,3 +94,4 @@ CREATE TABLE tweetdetails(
     FOREIGN KEY(tweets_id)
     REFERENCES tweets(tweets_id)
 );
+set global max_allowed_packet = 1000*100 * 1024 * 1024;
