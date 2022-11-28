@@ -107,12 +107,14 @@
                 
                 ";
                 endfor;
+                $path = "BookDetail.php?Sid=".$row['shohin_id'];
                 echo "<div class=detail style=display:inline-block; text-align:right>
-                    <p >
-                        <a href=BookDetail.html style=text-align: right;>詳細へ</a>
+                    <p>
+                        <a href=$path style=text-align: right;>詳細へ</a>
                     </p>
                 </div>
-            </div></div></div><hr class=hrr size=3px>";
+            </div></div></div>
+            <hr class=hrr size=3px>";
             }
         ?>
     </div>
