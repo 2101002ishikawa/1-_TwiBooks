@@ -45,24 +45,39 @@
         }
 
         .goodbtn.is-Good{
-        animation: rainbow 3s infinite;
+        animation: rainbow1 3s;
+        color: #ff0053;
         }
 
         .badbtn.is-Bad{
-        color:blue
-            }
+        animation: rainbow2 3s;
+        color:#5393ff
+        }
 
-        @keyframes rainbow{
-        0%{color:#ff0053;}
-        12%{color:#ff5353;}
+        @keyframes rainbow1{
+        0%{color:#ff53bd;}
+        12%{color:#ff5353 }
         24%{color:#ffcf53;}
         36%{color:#e8ff53;}
         48%{color:#53ff5d;}
         60%{color:#53ffbc;}
         72%{color:#5393ff;}
         84%{color:#ca53ff;}
-        100%{color:#ff53bd;}
-        }   
+        100%{color:#ff0053;}
+        }
+        
+        @keyframes rainbow2{
+        0%{color:#ff53bd;}
+        12%{color:#ff5353;}
+        24%{color:#ffcf53;}
+        36%{color:#e8ff53;}
+        48%{color:#53ff5d;}
+        60%{color:#53ffbc;}
+        72%{color:#ca53ff;}
+        84%{color:#53f9ff;}
+        100%{color: #5393ff;}
+        }
+
     </style>
 </head>
 <body>
