@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once "DBManager.php";
     $db = new DBManager;
 ?>    
@@ -96,16 +97,12 @@
                 ";
                 for($i = 0; $i < $db->getTweetImgCount($row['tweets_id']); $i++):
                     $image[$i] = $db->getTweetImg($row['tweets_id'],$i);
-                    echo "<li class= d-block mx-auto>
-                    <div>"?>
-                        <img src=data:images/png;base64,<?=base64_encode($image[$i]['tweets_img'])?> class=img-fluid p-2>
-                    
-                    <?php echo "</div>
-                    </li>
-                        
-                    
-                
-                ";
+                    echo 
+                    "<li class= d-block mx-auto>
+                        <div>"?>
+                            <img src=data:images/png;base64,<?=base64_encode($image[$i]['tweets_img'])?> class="img-fluid p-2">
+                        <?php echo "</div>
+                    </li>";
                 endfor;
                 $path = "BookDetail.php?Sid=".$row['shohin_id'];
                 echo "<div class=detail style=display:inline-block; text-align:right>
