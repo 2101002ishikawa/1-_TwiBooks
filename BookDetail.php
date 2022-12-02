@@ -1,14 +1,3 @@
-<?php
-    session_start();
-    require_once "DBManager.php";
-    $db=new DBManager;
-
-    if(isset($_POST['cart'])){
-        $db->InsertCart($_SESSION['userId'],$id,);
-    }else if(isset($_POST['asSoon'])){
-        
-    }
-?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -18,6 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <title></title>
     <style>
         body{
@@ -28,35 +18,31 @@
             border-radius: 15px;
         }
     </style>
-    <script>
-        var getURLParams = function(path) {
-            if (!path) return false;
+        <?php
+            session_start();
+            require_once "DBManager.php";
+            $db=new DBManager;
 
-            var param = path.match(/\?([^?]*)$/);
-
-            if (!param || param[1] === '') return false;
-
-            var tmpParams = param[1].split('&'),
-                keyValue  = [],
-                params    = {};
-
-            for (var i = 0, len = tmpParams.length; i < len; i++) {
-                keyValue = tmpParams[i].split('=');
-                params[keyValue[0]] = keyValue[1];
+            $id;
+            if(isset($_GET['Sid'])){
+                $id = $_GET['Sid']; 
             }
+            $book= $db->getShohin($id);
+            $imgcount = $db->getShohinImgCount($id);
+            
+            // if($_SERVER['REQUEST_METHOD']==='POST'){
+            //     $kazu = $_POST['kazu'];
+            //     $jumpflag = $_POST['jumpflag'];
+            //     $_SESSION['cart'][$id] = $kazu;
+            // }
+            // $cart=array();
+            // if(isset($_SESSION['cart'])){
+            //     $cart=$_SESSION['cart'];
+            //     var_dump($cart);
+            // }
 
-            return params;
-        };
-        var result = getURLParams( urlString );//urlのクエリを連想配列にする
+        ?>
     </script>
-    <?php
-        $id;
-        if(isset($_GET['Sid'])){
-            $id = $_GET['Sid']; 
-        }
-        $book= $db->getShohin($id);
-        $imgcount = $db->getShohinImgCount($id);
-    ?>
 </head>
 <body>
     <button onclick="location.href='./top.php'">トップページ</button>
@@ -78,29 +64,40 @@
                 <p>著：<?php echo $book[0]['shohin_writer'] ?></p>
                 <p>出版社：<?php echo $book[0]['shohin_conpany'] ?></p>
                 <p>価格：<?php echo number_format($book[0]['shohin_kakaku']) ?>円</p>
-                <form id="form">
-                    <select name="quantity">
+                <form action="cart.php" method="post" id="form" onsubmit="return cart();return false;">
+                    <select name="quantity" id="quantity">
                     <?php for($i=1;$i<=6;$i++): ?>
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                     <?php endfor; ?>
                     </select><br/>
-                    <input type="hidden" name="kazu">
-
+                    <button type="submit" name="cartButton" class="offset-2 col-8">カートに入れる</button>
                 </form>
-                <button class="offset-2 col-3" name="cart"  onclick="cartsubmit()">カートに入れる</button>
-                <button class="offset-2 col-3" name="asSoon" onclick="buysubmit()">今すぐ購入する</button>
             </div>
         </div>
     </div>
     <script type="text/javascript">
-        function cartsubmit(){
-            const form = document.getElementById("form");
-            const quantity =document.form..options[num].value;
-            form.kazu=quantity;
-            form.submit();
-        }
-        function buysubmit(){
-
+        function cart(){
+            // sessionStorage.setItem("kazu",document.getElementByName(quantity).value);
+            let kazu = document.getElementByName("quantity").value;
+            var data = {
+                shohin : $('<?php echo $id;?>').val(),
+                email : $("<?php echo $_SESSION['usermail']?>").val(),
+                quantity : $('<?php echo $_SESSION['quantity']?>').val()
+            };
+        
+            $.ajax({
+                type: "post",
+                url: "BookDetailBuyDB.php",
+                data: data,
+            });
+            <?php $db->InsertCart($_SESSION['usermail'],$id,$_POST['quantity']); ?>
+            let btncheck = document.getElementByName("cartButton").value;
+            alert(btncheck);
+            if(btncheck=="今すぐ購入する"){
+                return true;
+            }else{
+                return false;
+            }
         }
     </script>
 </body>

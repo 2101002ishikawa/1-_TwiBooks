@@ -225,5 +225,14 @@ class DBManager{
         $a = $pdo->query($sql);
         return $a->fetchAll();
     }
+
+    function InsertCart($mail,$id,$count){
+        $pdo = $this->dbConnect();
+        $stmt = $pdo->prepare("INSERT INTO carts(mem_mail,shohin_id,shohin_count,buy_flag) VALUES(?,?,?,0)");
+        $stmt->bindValue(1,$mail,PDO::PARAM_STR);
+        $stmt->bindValue(2,$id,PDO::PARAM_INT);
+        $stmt->bindValue(3,$count,PDO::PARAM_INT);
+        $stmt->execute();
+    }
 }
 ?>

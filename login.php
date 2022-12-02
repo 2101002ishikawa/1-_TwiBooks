@@ -20,7 +20,7 @@
 //セッションを使う
 session_start();
 
-if(isset($SESSION['usermail'])&&isset($SESSION['username'])){
+if(isset($_SESSION['usermail'])&&isset($_SESSION['username'])){
 header('location:loginsuccess.php');
 }
 
@@ -41,6 +41,7 @@ function login($usermail,$pass){
                     $_SESSION['usermail'] = $row['mem_mail'];
                     $_SESSION['username'] = $row['mem_name'];
                     $_SESSION['userId'] = $row['mem_id'];
+                    sleep(1);
                     header('Location:loginSuccess.php');
                 }else{
                     $errorMessage="メールアドレス又はパスワードが違います";
