@@ -16,6 +16,13 @@ class DBManager{
         $in->bindValue(5,password_hash($pass,PASSWORD_DEFAULT),PDO::PARAM_STR);
         $in->execute();
     }
+    function getMember($mail){
+        $pdo = $this->dbConnect();
+        $get =$pdo->prepare("SELECT * FROM members WHERE mem_mail = ? LIMIT 1");
+        $get->bindValue(1,$mail,PDO::PARAM_STR);
+        $get->execute();
+        return $get->fetch();
+    }
 
     function shohinIdSearch($name,$bunrui,$day,$kakaku){
         $pdo = $this->dbConnect();
@@ -106,8 +113,7 @@ class DBManager{
         $stmt->bindValue(':shohin_id', $id, PDO::PARAM_INT);
         $stmt->bindValue(':shohindetail_id', $detailid, PDO::PARAM_INT);
         $stmt->execute();
-        $image = $stmt->fetch();
-        return $image;
+        return $stmt->fetch();
     }
     function getShohinImgCount($id){
         $pdo = $this->dbConnect();
@@ -146,6 +152,27 @@ class DBManager{
             $inImg[$i]->execute();
         }
     }
+    function getTweet($id){
+        $pdo = $this->dbConnect();
+        $getTweet = $pdo->prepare("SELECT * FROM tweets WHERE tweets_id = ?");
+        $getTweet->bindValue(1,$id,PDO::PARAM_INT);
+        $getTweet->execute();
+        return $getTweet;
+    }
+    function getTweetCount(){
+        $pdo=$this->dbConnect();
+        $stmt = $pdo->prepare("SELECT * FROM tweets");
+        $stmt->execute();
+        return $stmt->rowCount();
+    }
+    function getTweetLast($first,$count){
+        $pdo=$this->dbConnect();
+        $stmt=$pdo->prepare("SELECT * FROM tweets ORDER BY tweets_id DESC LIMIT ?,?");
+        $stmt->bindValue(1,$first,PDO::PARAM_INT);
+        $stmt->bindValue(2,$count,PDO::PARAM_INT);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
     function getTweetImgCount($id){
         $pdo = $this->dbConnect();
         $getCount = $pdo->prepare("SELECT * FROM tweetdetails WHERE tweets_id = ?");
@@ -153,13 +180,6 @@ class DBManager{
         $getCount ->execute();
         $data = $getCount->rowCount();
         return $data;
-    }
-    function getTweet($id){
-        $pdo = $this->dbConnect();
-        $getTweet = $pdo->prepare("SELECT * FROM tweets WHERE tweets_id = ?");
-        $getTweet->bindValue(1,$id,PDO::PARAM_INT);
-        $getTweet->execute();
-        return $getTweet;
     }
     function getTweetImg($id,$detailid){
         $pdo = $this->dbConnect();

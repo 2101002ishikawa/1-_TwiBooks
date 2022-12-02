@@ -40,6 +40,7 @@ function login($usermail,$pass){
                 if(password_verify($pass,$row['mem_pass'])){
                     $_SESSION['usermail'] = $row['mem_mail'];
                     $_SESSION['username'] = $row['mem_name'];
+                    $_SESSION['userId'] = $row['mem_id'];
                     header('Location:loginSuccess.php');
                 }else{
                     $errorMessage="メールアドレス又はパスワードが違います";
