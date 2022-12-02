@@ -113,8 +113,7 @@ class DBManager{
         $stmt->bindValue(':shohin_id', $id, PDO::PARAM_INT);
         $stmt->bindValue(':shohindetail_id', $detailid, PDO::PARAM_INT);
         $stmt->execute();
-        $image = $stmt->fetch();
-        return $image;
+        return $stmt->fetch();
     }
     function getShohinImgCount($id){
         $pdo = $this->dbConnect();

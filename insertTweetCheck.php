@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require_once "DBManager.php";
     $db = new DBManager;
     $startFlag = false;
