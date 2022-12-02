@@ -1,6 +1,5 @@
 body{
-    background-color: 	#E6FFE9;
-    /* #F0FFF0 #E6FFE9 */
+    background-color: 	#eceaea;
 }
 .nobr{
   display: inline-block;
@@ -113,7 +112,7 @@ body{
   
   /*==テキスト入力とボタンinput共通設定*/
   #search-wrap input{
-    -webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
+    /*-webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
     outline: none;
     cursor: pointer;/*カーソルを指マークに*/
     color: #666;
