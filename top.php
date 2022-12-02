@@ -1,5 +1,9 @@
 <?php
     session_start();
+    if(isset($_SESSION['usermail'])==false
+        ||isset($_SESSION['username'])==false){
+            header('Location:login.php');
+    }
     require_once "DBManager.php";
     $db = new DBManager;
 ?>    
@@ -9,7 +13,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <script src="./script/script.js"></script>
+    <link rel="stylesheet" href="css/style.css?v=2">
     <title>TopPage</title>
 
     <style>
@@ -83,27 +92,27 @@
                 $mem = $db->getMember($row['mem_mail']);
                 echo "
                 <div class='tweetcard1 offset-md-2 col-md-8 col-12'>
-                    <div>
-                        <div hight:100px>
-                            <i class='bi bi-person-circle'></i><br><br>
-                            <h6>
+                    <div style='display: inline-block; _display: inline;'>
+                        <div style='display: inline-block; _display: inline;'>
+                            <i class='bi bi-person-circle' style='display: inline-block; _display: inline;'></i>
+                            <h6 style='display: inline-block; _display: inline;'>
                                 <b>$mem[mem_name]</b>
                             </h6>
-                            <h7>
+                            <h7 style='display: inline-block; _display: inline;'>
                                 $row[tweets_contents]
                             </h7>
                         </div>
                     </div>
+                    <div class='row offset-1 col-10'>
                 ";
                 for($i = 0; $i < $db->getTweetImgCount($row['tweets_id']); $i++):
                     $image[$i] = $db->getTweetImg($row['tweets_id'],$i);
-                    echo 
-                    "<li class= d-block mx-auto>
-                        <div>"?>
-                            <img src=data:images/png;base64,<?=base64_encode($image[$i]['tweets_img'])?> class="img-fluid p-2">
-                        <?php echo "</div>
-                    </li>";
+                    echo
+                    "<li class='col-6' style='display: inline-block; _display: inline; padding-left3%;padding-right:3%; border:1px solid;'>"?>
+                        <img src='data:images/png;base64,<?=base64_encode($image[$i]['tweets_img'])?>' class="img-fluid" style='display:inline-block;_display:inline;flex-nowrap:nowrap;'>
+        <?php echo "</li>";
                 endfor;
+                echo "</div>";
                 $path = "BookDetail.php?Sid=".$row['shohin_id'];
                 echo "<div class=detail style=display:inline-block; text-align:right>
                     <p>
@@ -117,12 +126,6 @@
     </div>
     <!-- <div id="loadimg"></div> -->
     
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">    
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
-    <script src="./script/script.js"></script>
-    <link rel="stylesheet" href="css/style.css?v=2">
     <!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script type="text/javascript" src="jquery.bottom-1.0.js"></script>
     <script type="text/javascript">
@@ -160,7 +163,6 @@
             });
             // リロードしたときにページの先頭を表示する
             $('html,body').animate({ scrollTop: 0 }, '1');
-
         });
     </script> -->
 </body>
