@@ -1,13 +1,17 @@
 body{
+<<<<<<< HEAD
     background-color: 	#fefefe;
 <<<<<<< HEAD
 =======
     /* #F0FFF0 #E6FFE9 */
+=======
+    background-color: 	#eceaea;
+    background-color: 	#f1f1f1;
+>>>>>>> abf369673fad2a044842ac46a221fac47f6ff46a
 }
 .nobr{
   display: inline-block;
   _display: inline;
->>>>>>> b23a41484b15259ebb76c0f15fa614191dfb0265
 }
 .card{
   border: 3px solid #000000;
@@ -116,7 +120,7 @@ body{
   
   /*==テキスト入力とボタンinput共通設定*/
   #search-wrap input{
-    -webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
+    /*-webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
     outline: none;
     cursor: pointer;/*カーソルを指マークに*/
     color: #666;
