@@ -24,8 +24,6 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/css/lightbox.css" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
     <script src="./script/script.js"></script>
     <link rel="stylesheet" href="css/style.css?v=2">
     <title>TopPage</title>
@@ -90,7 +88,7 @@
 </head>
 <body>
 
-<nav style="padding:0;margin:0; position: fixed; width: 100%; height:75px; " class="navbar navbar-light alert alert-success">
+    <nav style="padding:0;margin:0; position: fixed; width: 100%; height:75px; " class="navbar navbar-light alert alert-success">
         <div class="container" style="padding-left:0px; padding-right:0px;margin-left:0px; margin-right:0px;width:100%; height:75px">
         <!-- ロゴ -->
         <a class="navbar-brand" href="top.html"><img style ="margin-left:5px; height:60px;" src="./img/ロゴ.png" alt="サイトロゴ">
@@ -121,6 +119,7 @@
       </div>
       </div>
     </nav>
+    <div style="padding-top: 80px;"></div>
 
     <button onclick="location.href='./top.php'">トップページ</button>
     <button onclick="location.href='./newMember.php'">会員登録</button>
@@ -135,7 +134,7 @@
                 echo "
                 <div class='tweetcard1 offset-md-2 col-md-8 col-12'>
                     <div style='display: inline-block; _display: inline;'>
-                        <div style='display: inline-block; _display: inline;'>
+                        <div class='col-12' style='display: inline-block; _display: inline;'>
                             <i class='bi bi-person-circle' style='display: inline-block; _display: inline;'></i>
                             <h6 style='display: inline-block; _display: inline;'>
                                 <b>$mem[mem_name]</b>
