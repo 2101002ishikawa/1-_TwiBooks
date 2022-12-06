@@ -1,6 +1,5 @@
 body{
-    background-color: 	#E6FFE9;
-    /* #F0FFF0 #E6FFE9 */
+    background-color: 	#fefefe;
 }
 .nobr{
   display: inline-block;
@@ -119,7 +118,7 @@ body{
   
   /*==テキスト入力とボタンinput共通設定*/
   #search-wrap input{
-    -webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
+    /*-webkit-appearance:none;/*SafariやChromeのデフォルトの設定を無効*/
     outline: none;
     cursor: pointer;/*カーソルを指マークに*/
     color: #666;
@@ -144,11 +143,12 @@ body{
   /*ボタンinput設定*/
    #search-wrap input[type="submit"] {
     position: absolute;
-      top:10px;
+      top:27px;
     right:30px;
     background:url("https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/7-2-3/img/icon_search.svg") no-repeat right;/*虫眼鏡アイコンを背景に表示*/
     background-size: 20px 20px;
     width:30px;
-    height: 60px;
+    height: 30px;
+    border:none;
   }
 
