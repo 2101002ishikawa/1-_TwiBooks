@@ -116,7 +116,7 @@
                 $path = "BookDetail.php?Sid=".$row['shohin_id'];
                 echo "<div class=detail style=display:inline-block; text-align:right>
                     <p>
-                        <a href=$path style=text-align: right;>詳細へ</a>
+                        <a href=$path style=text-align: right;>紹介された本を見る</a>
                     </p>
                 </div>
             </div></div></div>

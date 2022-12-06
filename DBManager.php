@@ -92,6 +92,13 @@ class DBManager{
         $getShohin->execute();
         return $getShohin->fetchAll();
     }
+    function getShohinCart($id){
+        $pdo = $this->dbConnect();
+        $getShohin = $pdo->prepare("SELECT * FROM shohins WHERE shohin_id = ?");
+        $getShohin->bindValue(1,$id,PDO::PARAM_INT);
+        $getShohin->execute();
+        return $getShohin->fetch();
+    }
     function INSERTShohinImg($id,$content,$name,$type,$size){
         $pdo = $this->dbConnect();
         $inImg=array();
@@ -134,22 +141,24 @@ class DBManager{
             $insTweet ->execute();
             $id=$this->tweetsIdSearch($mail);
             return $id;
-        }else{
-            echo "<script type='text/javascript'>alert('商品IDが設定されていない数値に設定されています。\nもう一度お確かめください。');</script>";
         }
     }
     function INSERTTweetImg($id,$content,$name,$type,$size){
         $pdo = $this->dbConnect();
-        $inImg=array();
-        for ($i=0; $i<count($name); $i++) {
-            $inImg[$i]=$pdo->prepare("INSERT INTO tweetdetails(tweets_id,tweetdetails_id,tweets_img,image_name,image_type,image_size,created_at) VALUES(?,?,?,?,?,?,now())");
-            $inImg[$i]->bindValue(1,$id,PDO::PARAM_INT);
-            $inImg[$i]->bindValue(2,$i,PDO::PARAM_INT);
-            $inImg[$i]->bindValue(3,file_get_contents($content[$i]),PDO::PARAM_STR);
-            $inImg[$i]->bindValue(4,$name[$i],PDO::PARAM_STR);
-            $inImg[$i]->bindValue(5,$type[$i],PDO::PARAM_STR);
-            $inImg[$i]->bindValue(6,$size[$i],PDO::PARAM_INT);
-            $inImg[$i]->execute();
+        try {
+            $inImg=array();
+            for ($i=0; $i<count($name); $i++) {
+                $inImg[$i]=$pdo->prepare("INSERT INTO tweetdetails(tweets_id,tweetdetails_id,tweets_img,image_name,image_type,image_size,created_at) VALUES(?,?,?,?,?,?,now())");
+                $inImg[$i]->bindValue(1,$id,PDO::PARAM_INT);
+                $inImg[$i]->bindValue(2,$i,PDO::PARAM_INT);
+                $inImg[$i]->bindValue(3,file_get_contents($content[$i]),PDO::PARAM_STR);
+                $inImg[$i]->bindValue(4,$name[$i],PDO::PARAM_STR);
+                $inImg[$i]->bindValue(5,$type[$i],PDO::PARAM_STR);
+                $inImg[$i]->bindValue(6,$size[$i],PDO::PARAM_INT);
+                $inImg[$i]->execute();
+            }   
+        } catch (\Throwable $th) {
+            return null;
         }
     }
     function getTweet($id){
@@ -228,11 +237,43 @@ class DBManager{
 
     function InsertCart($mail,$id,$count){
         $pdo = $this->dbConnect();
-        $stmt = $pdo->prepare("INSERT INTO carts(mem_mail,shohin_id,shohin_count,buy_flag) VALUES(?,?,?,0)");
+        if($this->getCartsSmart($mail,$id)==0){
+            $stmt = $pdo->prepare("INSERT INTO carts(mem_mail,shohin_id,shohin_count,buy_flag) VALUES(?,?,?,0)");
+            $stmt->bindValue(1,$mail,PDO::PARAM_STR);
+            $stmt->bindValue(2,$id,PDO::PARAM_INT);
+            $stmt->bindValue(3,$count,PDO::PARAM_INT);
+            $stmt->execute();
+            return true;
+        }else{
+            $stmt2 = $pdo->prepare("UPDATE carts SET shohin_count = shohin_count+? WHERE mem_mail = ? AND shohin_id = ?");
+            $stmt2->bindValue(1,$count,PDO::PARAM_INT);
+            $stmt2->bindValue(2,$mail,PDO::PARAM_STR);
+            $stmt2->bindValue(3,$id,PDO::PARAM_INT);
+            $stmt2->execute();
+            return true;
+        }
+    }
+    function getCartsSmart($mail,$id){
+        $pdo = $this->dbConnect();
+        $stmt=$pdo->prepare("SELECT * FROM carts WHERE mem_mail = ? AND shohin_id = ?");
         $stmt->bindValue(1,$mail,PDO::PARAM_STR);
         $stmt->bindValue(2,$id,PDO::PARAM_INT);
-        $stmt->bindValue(3,$count,PDO::PARAM_INT);
         $stmt->execute();
+        return $stmt->rowCount();
+    }
+    function getCartsAll($mail){
+        $pdo = $this->dbConnect();
+        $stmt=$pdo->prepare("SELECT * FROM carts WHERE mem_mail = ?");
+        $stmt->bindValue(1,$mail,PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->fetchAll();
+    }
+    function getCartsAllCount($mail){
+        $pdo = $this->dbConnect();
+        $stmt=$pdo->prepare("SELECT * FROM carts WHERE mem_mail = ?");
+        $stmt->bindValue(1,$mail,PDO::PARAM_STR);
+        $stmt->execute();
+        return $stmt->rowCount();
     }
 }
 ?>

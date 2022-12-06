@@ -6,11 +6,17 @@ body{
   display: inline-block;
   _display: inline;
 }
+.box{
+  border:1px solid #000000;
+}
 .card{
   border: 3px solid #000000;
   border-radius: 15px;
 }
-
+.whitewall{
+  border:none;
+  background-color:white;
+}
 .tweetcard1{
     border: 3px solid #000000;
     background-color: #ffffff;

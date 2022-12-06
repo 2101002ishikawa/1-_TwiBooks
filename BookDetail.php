@@ -64,41 +64,17 @@
                 <p>著：<?php echo $book[0]['shohin_writer'] ?></p>
                 <p>出版社：<?php echo $book[0]['shohin_conpany'] ?></p>
                 <p>価格：<?php echo number_format($book[0]['shohin_kakaku']) ?>円</p>
-                <form action="cart.php" method="post" id="form" onsubmit="return cart();return false;">
+                <form action="BookDetailBuyDB.php" method="post" id="form">
                     <select name="quantity" id="quantity">
                     <?php for($i=1;$i<=6;$i++): ?>
                         <option value="<?php echo $i; ?>"><?php echo $i; ?></option>
                     <?php endfor; ?>
                     </select><br/>
+                    <input type="hidden" name="shohinId" value="<?php echo $id?>">
                     <button type="submit" name="cartButton" class="offset-2 col-8">カートに入れる</button>
                 </form>
             </div>
         </div>
     </div>
-    <script type="text/javascript">
-        function cart(){
-            // sessionStorage.setItem("kazu",document.getElementByName(quantity).value);
-            let kazu = document.getElementByName("quantity").value;
-            var data = {
-                shohin : $('<?php echo $id;?>').val(),
-                email : $("<?php echo $_SESSION['usermail']?>").val(),
-                quantity : $('<?php echo $_SESSION['quantity']?>').val()
-            };
-        
-            $.ajax({
-                type: "post",
-                url: "BookDetailBuyDB.php",
-                data: data,
-            });
-            <?php $db->InsertCart($_SESSION['usermail'],$id,$_POST['quantity']); ?>
-            let btncheck = document.getElementByName("cartButton").value;
-            alert(btncheck);
-            if(btncheck=="今すぐ購入する"){
-                return true;
-            }else{
-                return false;
-            }
-        }
-    </script>
 </body>
 </html>

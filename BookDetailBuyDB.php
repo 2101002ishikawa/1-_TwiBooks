@@ -1,33 +1,15 @@
 <?php
-require_once "DBManager.php";
-$db = new DBManager;
-header("Content-type: text/plain; charset=UTF-8");
-$sender_shohin = $_POST['shohin'];
-$sender_mail_address = $_POST['email'];
-$sender_quantity = $_POST['quantity'];
-
-//空白チェック
-    $errorflag = 0;
-	if ($sender_shohin == null) {
-		$errorflag = 1;
-	}else{
-        $error_shohin = "";
-    }
-    if ($sender_mail_address == null) {
-        $errorflag = 1;
+    session_start();
+    require_once "DBManager.php";
+    $db = new DBManager;
+    
+    $bool = $db->InsertCart($_SESSION['usermail'],$_POST['shohinId'],$_POST['quantity']);   
+    if($bool){
+        $book= $db->getShohin($_POST['shohinId']);
+        echo "<script>alert(商品名：.$book[0][shohin_mei].\n個数：.$_POST[quantity].\nこの内容でカートに商品を入れました。\nカート画面へ移行します。)</script>";
+        header("Location:cart.php");
     }else{
-        $error_mail = "";
-    }
-    if ($contact_body == null) {
-        $errorflag = 1;
-    }else{
-        $error_quantity = "";
-    }
-	
-    if ($errorflag == 1){
-        echo "alert('カートに商品を入れることが出来ませんでした。\nもう一度お確かめください。')";
-    }else{
-        $db->InsertCart($sender_mail_address,$sender_shohin,$sender_quantity);
-        echo "alert('送信が完了しました')";
+        echo "<script>alert(処理に失敗しました。もう一度お試しください)</script>";
+        header("Location:BookDetail.php?id=$_POST[shohinId]");
     }
 ?>

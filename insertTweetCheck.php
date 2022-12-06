@@ -2,7 +2,6 @@
     session_start();
     require_once "DBManager.php";
     $db = new DBManager;
-    $startFlag = false;
     $tweetId=$db->INSERTTweet($_POST['mem_mail'],$_POST['shohin_id'],$_POST['tweets_contents']);
     if(!empty($_FILES['tweets_img'])){
         $db->INSERTTweetImg($tweetId,$_FILES['tweets_img']['tmp_name'],$_FILES['tweets_img']['name'],$_FILES['tweets_img']['type'],$_FILES['tweets_img']['size']);

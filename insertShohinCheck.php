@@ -3,17 +3,21 @@
     require_once "DBManager.php";
     require_once 'functions.php';
     $db = new DBManager;
-    $shohinId=$db->INSERTShohin($_POST['shohin_mei'],$_POST['bunrui'],$_POST['hanbai_bi'],$_POST['shohin_kakaku'],$_POST['shohin_writer'],$_POST['shohin_conpany'],$_POST['isbn'],$_POST['tosyo']);
-
-    if(!empty($_FILES['shohin_img'])){
-        $db->INSERTShohinImg($shohinId,$_FILES['shohin_img']['tmp_name'],$_FILES['shohin_img']['name'],$_FILES['shohin_img']['type'],$_FILES['shohin_img']['size']);
-    }
-    $shohintagArray;
-    $shohinDataArray;
-    $shohin = $db->getShohin($shohinId);
-    foreach ($shohin as $shohinData) {
+    try {
+        $shohinId=$db->INSERTShohin($_POST['shohin_mei'],$_POST['bunrui'],$_POST['hanbai_bi'],$_POST['shohin_kakaku'],$_POST['shohin_writer'],$_POST['shohin_conpany'],$_POST['isbn'],$_POST['tosyo']);
+        if(empty($shohinId)){
+            throw new Exception("Error Processing Request");
+        }
+        if(!empty($_FILES['shohin_img'])){
+            $db->INSERTShohinImg($shohinId,$_FILES['shohin_img']['tmp_name'],$_FILES['shohin_img']['name'],$_FILES['shohin_img']['type'],$_FILES['shohin_img']['size']);
+        }
+        $shohintagArray;
+        $shohinDataArray;
+        $shohin = $db->getShohinCart($shohinId);
         $shohintagArray = array("書籍名","著者","出版社","価格","ISBNコード","書籍コード","ジャンル","販売日");
-    $shohinDataArray= array($shohinData['shohin_mei'],$shohinData['shohin_writer'],$shohinData['shohin_conpany'],$shohinData['shohin_kakaku'],$shohinData['shohin_ISBN'],$shohinData['shohin_bookcode'],$shohinData['shohin_bunrui'],$shohinData['hanbai_bi']);
+        $shohinDataArray= array($shohin['shohin_mei'],$shohin['shohin_writer'],$shohin['shohin_conpany'],$shohin['shohin_kakaku'],$shohin['shohin_ISBN'],$shohin['shohin_bookcode'],$shohin['shohin_bunrui'],$shohin['hanbai_bi']);
+    } catch (Throwable $th) {
+        echo "<script type='text/javascript'>alert('商品IDが設定されていない数値に設定されています。\nもう一度お確かめください。');</script>";
     }
 ?>
 <!DOCTYPE html>
