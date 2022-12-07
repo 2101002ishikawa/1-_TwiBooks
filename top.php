@@ -9,6 +9,7 @@
 ?>    
 <!DOCTYPE html>
 <html lang="ja">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,6 +26,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
     <script src="./script/script.js"></script>
+
     <link rel="stylesheet" href="css/style.css?v=2">
     <title>TopPage</title>
 
@@ -91,7 +93,7 @@
     <nav style="padding:0;margin:0; position: fixed; width: 100%; height:75px; " class="navbar navbar-light alert alert-success">
         <div class="container" style="padding-left:0px; padding-right:0px;margin-left:0px; margin-right:0px;width:100%; height:75px">
         <!-- ロゴ -->
-        <a class="navbar-brand" href="top.html"><img style ="margin-left:5px; height:60px;" src="./img/ロゴ.png" alt="サイトロゴ">
+        <a class="navbar-brand" href="top.php"><img style ="margin-left:5px; height:60px;" src="./img/ロゴ.png" alt="サイトロゴ">
         <!-- サイト名 -->
         <img style =" height: 40px;" src="./img/サイト名.png" alt="サイト名"></a>
         <div class="form-inline ml-auto"></div>
@@ -100,7 +102,7 @@
   
           <div id="search-wrap">
             
-          <form role="search" method="get" id="searchform" action="top.html">
+          <form role="search" method="get" id="searchform" action="top.php">
           <input type="text" value="" name="text" id="search-text" placeholder="search">
 
           <input type="submit" id="searchsubmit" value="">
@@ -206,5 +208,8 @@
             $('html,body').animate({ scrollTop: 0 }, '1');
         });
     </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+<script src="./script/script.js"></script>
 </body>
 </html>
