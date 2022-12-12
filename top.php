@@ -93,7 +93,7 @@
     <nav style="padding:0;margin:0; position: fixed; width: 100%; height:75px; " class="navbar navbar-light alert alert-success">
         <div class="container" style="padding-left:0px; padding-right:0px;margin-left:0px; margin-right:0px;width:100%; height:75px">
         <!-- ロゴ -->
-        <a class="navbar-brand" href="top.php"><img style ="margin-left:5px; height:60px;" src="./img/ロゴ.png" alt="サイトロゴ">
+        <a class="navbar-brand" href=""><img style ="margin-left:5px; height:60px;" src="./img/ロゴ.png" alt="サイトロゴ">
         <!-- サイト名 -->
         <img style =" height: 40px;" src="./img/サイト名.png" alt="サイト名"></a>
         <div class="form-inline ml-auto"></div>
