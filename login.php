@@ -121,7 +121,7 @@ if (!empty($_POST)) {
 
     <div class="row">
         <div class="card offset-sm-3 col-sm-6 col-12 text-center" style="padding-bottom:10%; ">
-            <h1 class="mt-5">ログイン</h1>
+            <h1 class="mt-5" style="width:100%;">ログイン</h1>
             <form action="" method="post" name="form1">
                 mail:<input type="text" name="usermail" class="m-3"><br>
                 pass:<input type="password" name="pass" class="m-3"><br>
