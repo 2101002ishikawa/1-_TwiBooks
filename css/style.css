@@ -17,8 +17,8 @@ body{
   background-color:white;
 }
 .tweetcard1{
-    border: 3px solid #000000;
     background-color: #ffffff;
+    border-bottom: thick double #000000;
 }
 #newMemberButton{
     margin-top: 30px;
