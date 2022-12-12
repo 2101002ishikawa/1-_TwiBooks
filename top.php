@@ -128,7 +128,7 @@
     <button onclick="location.href='./login.php'">ログイン</button>
     <button onclick="location.href='./insertShohin.php'">本の登録</button>
     <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
-    <div  id="wrap" style="margin-top:75px;">
+    <div  id="wrap" style="margin-top:10px;">
         <?php
             $tweets=$db->getTweetLast(0,5);
             foreach($tweets as $row){
