@@ -9,6 +9,7 @@
 ?>    
 <!DOCTYPE html>
 <html lang="ja">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -25,6 +26,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.7.1/js/lightbox.min.js" type="text/javascript"></script>
     <script src="./script/script.js"></script>
+
     <link rel="stylesheet" href="css/style.css?v=2">
     <title>TopPage</title>
 
@@ -130,7 +132,7 @@
     <button onclick="location.href='./login.php'">ログイン</button>
     <button onclick="location.href='./insertShohin.php'">本の登録</button>
     <button onclick="location.href='./insertTweet.php'">つぶやき投稿</button>
-    <div  id="wrap" style="margin-top:75px;">
+    <div  id="wrap" style="margin-top:0px;"> 
         <?php
             $tweets=$db->getTweetLast(0,5);
             foreach($tweets as $row){
@@ -210,5 +212,8 @@
             $('html,body').animate({ scrollTop: 0 }, '1');
         });
     </script> -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="  crossorigin="anonymous"></script>
+<script src="./script/script.js"></script>
 </body>
 </html>
